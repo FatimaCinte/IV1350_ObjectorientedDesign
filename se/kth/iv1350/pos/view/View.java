@@ -8,4 +8,12 @@ public class View {
     public View(Controller contr){
         controller = contr;
     }
+
+    public void fakeExecutionRun(){
+        controller.startSale();
+        int grossPrice = controller.endSale();
+
+        int paidAmount = 0;
+        int changeAmount = controller.presentPayment(paidAmount);
+    }
 }

@@ -1,8 +1,18 @@
 package se.kth.iv1350.pos.integration;
 
-public class SaleDTO {
+import java.time.LocalDate;
+import java.time.LocalTime;
 
-    public SaleDTO(int date, int grossPrice, int netPrice){
-        
+public class SaleDTO {
+    private final LocalDate date;
+    private final LocalTime time;
+    private final int grossPrice; 
+    private final int netPrice;
+
+    public SaleDTO(LocalDate date, LocalTime time, int grossPrice, int netPrice){
+        this.date = date;
+        this.time = time;
+        this.grossPrice = grossPrice;
+        this.netPrice = netPrice;
     }
 }

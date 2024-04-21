@@ -6,4 +6,6 @@ public class AccountingHandler {
 
     }
 
+    public void updateAccounting(SaleDTO saleInforamtion){
+    }
 }
