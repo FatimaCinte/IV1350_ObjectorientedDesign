@@ -1,14 +1,20 @@
 package se.kth.iv1350.pos.integration;
 
-import se.kth.iv1350.pos.model.Basket;
-
 public class DiscountRequestDTO {
-    private Basket basket;
+    private BasketDTO basketDTO;
     private int customerID;
 
-    public DiscountRequestDTO(Basket basket, int customerID){
-        this.basket = basket;
+    public DiscountRequestDTO(BasketDTO basketDTO, int customerID){
+        this.basketDTO = basketDTO;
         this.customerID = customerID;
+    }
+
+    public BasketDTO geBasketDTO(){
+        return basketDTO;
+    }
+
+    public int getCustomerID(){
+        return customerID;
     }
 
 }

@@ -6,20 +6,20 @@ public class ItemDTO {
     private final int vatRate;
 
     public ItemDTO() {
-        itemID = 0;
-        name = "banan";
-        vatRate = 100;
+        this.itemID = 0;
+        this.name = "";
+        this.vatRate = 0;
     }
 
     public int getItemID() {
-        return this.itemID;
+        return itemID;
     }
 
     public String getItemName() {
-        return this.name;
+        return name;
     }
 
     public int getVatRate() {
-        return this.vatRate;
+        return vatRate;
     }
 }

@@ -17,6 +17,8 @@ public class Main {
 
         Controller controller = new Controller(accountingHandler, inventoryHandler, discountDBHandler, printerHandler);
         
-        new View(controller);
+        View view = new View(controller);
+        
+        view.fakeExecutionRun();
     }
 }
