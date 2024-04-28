@@ -2,6 +2,7 @@ package se.kth.iv1350.pos.controller;
 
 import se.kth.iv1350.pos.integration.*;
 import se.kth.iv1350.pos.model.Sale;
+import se.kth.iv1350.pos.model.PriceDetails;
 import se.kth.iv1350.pos.model.Receipt;
 
 public class Controller {
@@ -23,16 +24,25 @@ public class Controller {
         sale = new Sale();
     }
 
-    public double endSale() {
-        double grossPrice = sale.getGrossPrice();
-
-        return grossPrice;
-    }
-
     public BasketDTO scanItem(int itemID, int quantity) {
         ItemDTO itemDTO = inventoryHandler.getItemDTO(itemID);
         BasketDTO basketDTO = sale.scanItem(itemDTO, quantity);
         return basketDTO;
+    }
+
+    public PriceDetails endSale() {
+        PriceDetails priceDetails = sale.getPriceDetails();
+        return priceDetails;
+    }
+
+    public PriceDetails requestDiscount(int customerID) {
+        DiscountRequestDTO discountRequestDTO = sale.getDiscountRequestDTO(customerID);
+        DiscountDTO discountDTO = discountDBHandler.getDiscount(discountRequestDTO);
+        
+        sale.applyDiscount(discountDTO);
+        PriceDetails priceDetails = sale.getPriceDetails();
+        
+        return priceDetails;
     }
 
     public int presentPayment(int paidAmount) {
@@ -44,12 +54,5 @@ public class Controller {
         printerHandler.printReceipt(receipt);
 
         return 0;
-    }
-
-    public double requestDiscount(int customerID) {
-        DiscountRequestDTO discountRequestDTO = sale.getDiscountRequestDTO(customerID);
-        DiscountDTO discountDTO = discountDBHandler.getDiscount(discountRequestDTO);
-        double grossPrice = sale.applyDiscount(discountDTO);
-        return grossPrice;
     }
 }

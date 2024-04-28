@@ -3,20 +3,20 @@ package se.kth.iv1350.pos.model;
 import se.kth.iv1350.pos.integration.ItemDTO;
 
 public class Item {
-    private int itemID;
-    private String name;
-    private int vatRate;
+    private final ItemDTO itemDTO;
     private int quantity;
 
     Item(ItemDTO itemDTO, int quantity) {
-        this.itemID = itemDTO.getItemID();
-        this.name = itemDTO.getItemName();
-        this.vatRate = itemDTO.getVatRate();
+        this.itemDTO = itemDTO;
         this.quantity = quantity;
     }
     
-    int getItemID() {
-        return this.itemID;
+    ItemDTO getItemDTO(){
+        return itemDTO;
+    }
+
+    int getQuantity(){
+        return quantity;
     }
 
     void updateQuantity(int quantity) {

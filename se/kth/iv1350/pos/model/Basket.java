@@ -14,47 +14,7 @@ public class Basket {
     Basket() {
         itemList = new ArrayList<Item>();
         priceDetails = new PriceDetails(0, 0);
-        basketDTO = new BasketDTO(itemList, priceDetails);
-    }
-
-    BasketDTO updateBasket(ItemDTO itemDTO, int quantity) {
-        int itemID = itemDTO.getItemID();
-        boolean repeatedItem = searchForRepeatedItemInBasket(itemID);
-        if (repeatedItem) {
-            updateQuantityOfItemInList(quantity, itemID);
-        }
-        else {
-            Item item = new Item(itemDTO, quantity);
-            addItemToBasket(item);
-        }
-        updateRunningGrossPrice();
-        
-        return basketDTO;
-	}
-
-    private void updateQuantityOfItemInList(int quantity, int itemID){
-        itemList.forEach((itemInItemList) -> {
-            if (itemInItemList.getItemID() == itemID) {
-                itemInItemList.updateQuantity(quantity); 
-            }
-        });    
-    }
-    
-    private void addItemToBasket(Item itemToAdd){
-        itemList.add(itemToAdd);
-    }
-
-    private boolean searchForRepeatedItemInBasket(int itemID) {
-        for (int i = 0; i < itemList.size(); i++) {
-            if (itemList.get(i).getItemID() == itemID) {
-                return true;
-            }
-        }
-        return false;
-    }
-    
-    private void updateRunningGrossPrice() {
-        
+        basketDTO = new BasketDTO(itemList, null,  priceDetails);
     }
 
     BasketDTO getBasketDTO(){
@@ -65,13 +25,86 @@ public class Basket {
         return priceDetails;
     }
 
-    double applyDiscount(DiscountDTO discountDTO) {
-        int itemListDiscount = discountDTO.getItemListDiscount();
+    void updateBasket(ItemDTO itemDTO, int quantity) {
+        int itemID = itemDTO.getItemID();
+        boolean repeatedItem = searchForRepeatedItemInBasket(itemID);
+        if (repeatedItem) {
+            updateQuantityOfItemInList(quantity, itemID);
+        }
+        else {
+            Item item = new Item(itemDTO, quantity);
+            addItemToBasket(item);
+        }
+        updateRunningPriceDetails();
+	}
+
+    private void updateQuantityOfItemInList(int quantity, int itemID){
+        itemList.forEach((itemInItemList) -> {
+            ItemDTO currentItemInformation = itemInItemList.getItemDTO();
+            if (currentItemInformation.getItemID() == itemID) {
+                itemInItemList.updateQuantity(quantity);
+                addLatestItemToBasketDTO(itemInItemList);
+            }
+        });
+        
+    }
+    
+    private void addItemToBasket(Item itemToAdd){
+        itemList.add(itemToAdd);
+        addLatestItemToBasketDTO(itemToAdd);
+    }
+
+    private boolean searchForRepeatedItemInBasket(int itemID) {
+        for (int i = 0; i < itemList.size(); i++) {
+            ItemDTO currentItemInformation = itemList.get(i).getItemDTO();
+            if (currentItemInformation.getItemID() == itemID) {
+                return true;
+            }
+        }
+        return false;
+    }
+    
+    private void updateRunningPriceDetails() {
+        double grossPrice = 0;
+        double netPrice = 0;
+        for (int i = 0; i < itemList.size(); i++) {
+            Item itemInList = itemList.get(i);
+            ItemDTO itemInListInformation = itemInList.getItemDTO();
+            
+            double itemGrossPrice = itemInListInformation.getItemNetPrice();
+            int itemQuantity = itemInList.getQuantity();
+            int itemVatRate = itemInListInformation.getVatRate();
+
+            grossPrice += itemGrossPrice * itemQuantity;
+            netPrice += grossPrice + grossPrice * (itemVatRate/100);
+        }
+
+        priceDetails = new PriceDetails(grossPrice, netPrice);
+    }
+
+    private void addLatestItemToBasketDTO (Item latestItem){
+        basketDTO = new BasketDTO(itemList, latestItem,  priceDetails);
+    }
+
+    void applyDiscount(DiscountDTO discountDTO) {
+        double grossPrice = priceDetails.getGrossPrice();
+        double netPrice = priceDetails.getNetPrice();
+
+        grossPrice = applyDiscount(grossPrice, discountDTO);
+        netPrice = applyDiscount(netPrice, discountDTO);
+
+        priceDetails = new PriceDetails(grossPrice, netPrice);
+    }
+
+    private double applyDiscount(double price, DiscountDTO discountDTO){
+        double itemListDiscount = discountDTO.getItemListDiscount();
         double grossPriceDiscount = discountDTO.getGrossPriceDiscount();
         double customerIDDiscount = discountDTO.getCustomerIDDiscount();
 
-        grossPrice = grossPrice * (1 - grossPriceDiscount) * (1 - customerIDDiscount) - itemListDiscount;
-
-        return grossPrice;
+        price = price * (1 - grossPriceDiscount) * (1 - customerIDDiscount) - itemListDiscount;
+        
+        return price;
     }
+
+    
 }

@@ -11,42 +11,42 @@ import java.time.LocalTime;
 
 public class Sale {
     private Basket basket;
-    private BasketDTO basketDTO;
     private SaleDTO saleInformation;
 	private DiscountRequestDTO discountRequestDTO;
 	private Receipt receipt;
-    private PriceDetails priceDetails;
 
     private LocalTime time;
     private LocalDate date;
 
     public Sale() {
+        date = LocalDate.now();
+        time = LocalTime.now();
         basket = new Basket();
     }
 
     public BasketDTO scanItem(ItemDTO itemDTO, int quantity) {
-        basketDTO = basket.updateBasket(itemDTO, quantity);
+        basket.updateBasket(itemDTO, quantity);
+        BasketDTO basketDTO = basket.getBasketDTO();
 
         return basketDTO; 
     }
 
-    public double getGrossPrice() {
-        priceDetails = basket.getPriceDetails();
-        double grossPrice = priceDetails.getGrossPrice();
-
-        return grossPrice;
+    public PriceDetails getPriceDetails() {
+        PriceDetails priceDetails = basket.getPriceDetails();
+        return priceDetails;
     }
 
     public SaleDTO getSaleDTO(){
-        date = LocalDate.now();
-        time = LocalTime.now();
+        BasketDTO basketDTO = basket.getBasketDTO();
+
         saleInformation = new SaleDTO(date, time, basketDTO);
 
         return saleInformation;
     }
 
     public Receipt getReceipt(int paidAmount) {
-        double grossPrice = getGrossPrice();
+        PriceDetails priceDetails = basket.getPriceDetails();
+        double grossPrice = priceDetails.getGrossPrice();
         double changeAmount = calculateChange(paidAmount, grossPrice);
 
         receipt = new Receipt(saleInformation, paidAmount, changeAmount);
@@ -64,9 +64,7 @@ public class Sale {
         return discountRequestDTO;
     }
 
-    public double applyDiscount(DiscountDTO discountDTO) {
-        double grossPrice = basket.applyDiscount(discountDTO);
-        
-        return grossPrice;
+    public void applyDiscount(DiscountDTO discountDTO) {
+        basket.applyDiscount(discountDTO);
     }
 }

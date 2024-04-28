@@ -2,6 +2,7 @@ package se.kth.iv1350.pos.view;
 
 import se.kth.iv1350.pos.controller.Controller;
 import se.kth.iv1350.pos.integration.BasketDTO;
+import se.kth.iv1350.pos.model.PriceDetails;
 
 public class View {
     private Controller controller;
@@ -15,13 +16,13 @@ public class View {
         controller.scanItem(123, 1);
         controller.scanItem(123, 1);
         controller.scanItem(456, 1);
-        double grossPrice = controller.endSale();
+        PriceDetails priceDetails = controller.endSale();
+        double grossPrice = priceDetails.getGrossPrice();
+        System.out.println(grossPrice);
 
         int paidAmount = 100;
         int changeAmount = controller.presentPayment(paidAmount);
         System.out.println(changeAmount);
-
-
         
     }
 }

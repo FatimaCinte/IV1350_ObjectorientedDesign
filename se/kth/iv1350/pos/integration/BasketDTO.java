@@ -17,11 +17,15 @@ public class BasketDTO {
     }
 
     public ArrayList<Item> getItemList() {
-        return this.itemList;
+        return itemList;
+    }
+
+    public Item getLatestItem(){
+        return latestAddedItem;
     }
 
     public PriceDetails getPriceDetails() {
-        return this.priceDetails;
+        return priceDetails;
     }
 
 }
