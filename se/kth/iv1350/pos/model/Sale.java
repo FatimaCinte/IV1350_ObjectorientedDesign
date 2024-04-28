@@ -44,7 +44,7 @@ public class Sale {
         return saleInformation;
     }
 
-    public Receipt getReceipt(int paidAmount) {
+    public Receipt getReceipt(double paidAmount) {
         PriceDetails priceDetails = basket.getPriceDetails();
         double grossPrice = priceDetails.getGrossPrice();
         double changeAmount = calculateChange(paidAmount, grossPrice);

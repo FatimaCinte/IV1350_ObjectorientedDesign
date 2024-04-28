@@ -20,21 +20,42 @@ public class Controller {
         this.printerHandler = printerHandler;
     }
 
+    /**
+     * Creates an instance of Sale. 
+     */
     public void startSale() {
         sale = new Sale();
     }
 
+    /**
+     * Calls sale with the scanned item information, and the quantity of the scanned item. 
+     * 
+     * @param itemID The id of the scanned item.
+     * @param quantity The quantity of the scanned item. 
+     * @return The BasketDTO representing the current Basket. 
+     */
     public BasketDTO scanItem(int itemID, int quantity) {
         ItemDTO itemDTO = inventoryHandler.getItemDTO(itemID);
         BasketDTO basketDTO = sale.scanItem(itemDTO, quantity);
         return basketDTO;
     }
 
+    /**
+     * Gets price details from sale. 
+     * 
+     * @return The price details at the end of the sale. 
+     */
     public PriceDetails endSale() {
         PriceDetails priceDetails = sale.getPriceDetails();
         return priceDetails;
     }
 
+    /**
+     * Applies discount to sale. 
+     * 
+     * @param customerID The id of the customer asking for a discount.
+     * @return The price details after discount. 
+     */
     public PriceDetails requestDiscount(int customerID) {
         DiscountRequestDTO discountRequestDTO = sale.getDiscountRequestDTO(customerID);
         DiscountDTO discountDTO = discountDBHandler.getDiscount(discountRequestDTO);
@@ -45,7 +66,14 @@ public class Controller {
         return priceDetails;
     }
 
-    public int presentPayment(int paidAmount) {
+    /**
+     * Updates external accounting, and external inventory.
+     * Prints receipt.
+     * 
+     * @param paidAmount The amount the customer is paying for the sale.
+     * @return The amount of chanage the customer should receive. 
+     */
+    public double presentPayment(double paidAmount) {
         SaleDTO saleInformation = sale.getSaleDTO();
         accountingHandler.updateAccounting(saleInformation);
         inventoryHandler.updateInventory(saleInformation);
@@ -53,6 +81,8 @@ public class Controller {
         Receipt receipt = sale.getReceipt(paidAmount);
         printerHandler.printReceipt(receipt);
 
-        return 0;
+        double changeAmount = receipt.getChangeAmount();
+
+        return changeAmount;
     }
 }

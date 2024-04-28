@@ -20,8 +20,8 @@ public class View {
         double grossPrice = priceDetails.getGrossPrice();
         System.out.println(grossPrice);
 
-        int paidAmount = 100;
-        int changeAmount = controller.presentPayment(paidAmount);
+        double paidAmount = 100;
+        double changeAmount = controller.presentPayment(paidAmount);
         System.out.println(changeAmount);
         
     }
