@@ -23,5 +23,7 @@ public class View {
         int paidAmount = 100;
         int changeAmount = controller.presentPayment(paidAmount);
         System.out.println(changeAmount);
+
+        
     }
 }
