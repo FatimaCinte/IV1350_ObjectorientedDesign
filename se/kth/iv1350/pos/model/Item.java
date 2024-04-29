@@ -19,6 +19,11 @@ public class Item {
         return quantity;
     }
 
+    /**
+     * Updates the quantity.
+     * 
+     * @param quantity The amount to change this instance's quantity with.
+     */
     void updateQuantity(int quantity) {
         this.quantity += quantity;
     }

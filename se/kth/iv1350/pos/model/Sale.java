@@ -24,6 +24,13 @@ public class Sale {
         basket = new Basket();
     }
 
+    /**
+     * Updates basket, and returns basket information.
+     * 
+     * @param itemDTO The item information of the scanned item.
+     * @param quantity The quantity of the scanned item.
+     * @return The basket information containing list of items, price details, and the last added item.
+     */
     public BasketDTO scanItem(ItemDTO itemDTO, int quantity) {
         basket.updateBasket(itemDTO, quantity);
         BasketDTO basketDTO = basket.getBasketDTO();
@@ -36,6 +43,11 @@ public class Sale {
         return priceDetails;
     }
 
+    /**
+     * Returns the sale information.
+     * 
+     * @return The sale informataion. 
+     */
     public SaleDTO getSaleDTO(){
         BasketDTO basketDTO = basket.getBasketDTO();
 
@@ -44,6 +56,12 @@ public class Sale {
         return saleInformation;
     }
 
+    /**
+     * Creates a new receipt, and returns it. 
+     * 
+     * @param paidAmount The amount the customer paid for the sale.
+     * @return An instance of receipt, as confirmation of the sale.
+     */
     public Receipt getReceipt(double paidAmount) {
         PriceDetails priceDetails = basket.getPriceDetails();
         double grossPrice = priceDetails.getGrossPrice();
@@ -64,6 +82,11 @@ public class Sale {
         return discountRequestDTO;
     }
 
+    /**
+     * Applies discount to basket. 
+     * 
+     * @param discountDTO The discount to be applied to sale. 
+     */
     public void applyDiscount(DiscountDTO discountDTO) {
         basket.applyDiscount(discountDTO);
     }

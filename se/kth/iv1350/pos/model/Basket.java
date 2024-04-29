@@ -25,6 +25,14 @@ public class Basket {
         return priceDetails;
     }
 
+    /**
+     * If item information belongs to a previously scanned item and already exists in basket, increase the quantity of that item with the given parameter.
+     * Otherwise, add the item to the basket. 
+     * Update price details.  
+     * 
+     * @param itemDTO The item information of a scanned item.
+     * @param quantity The quantity of a scanned item. 
+     */
     void updateBasket(ItemDTO itemDTO, int quantity) {
         int itemID = itemDTO.getItemID();
         boolean repeatedItem = searchForRepeatedItemInBasket(itemID);
@@ -86,6 +94,11 @@ public class Basket {
         basketDTO = new BasketDTO(itemList, latestItem,  priceDetails);
     }
 
+    /**
+     * Applies discount to, and updates price details. 
+     * 
+     * @param discountDTO The discounts to be applied to the price details.
+     */
     void applyDiscount(DiscountDTO discountDTO) {
         double grossPrice = priceDetails.getGrossPrice();
         double netPrice = priceDetails.getNetPrice();
