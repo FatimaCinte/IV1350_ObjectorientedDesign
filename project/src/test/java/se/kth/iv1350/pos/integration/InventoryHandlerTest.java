@@ -1,4 +1,4 @@
-package se.kth.iv1350.pos.test;
+package se.kth.iv1350.pos.integration;
 
 public class InventoryHandlerTest {
 
