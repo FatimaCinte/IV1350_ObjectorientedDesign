@@ -21,22 +21,47 @@ public class SaleDTO {
         this.itemList = basketDTO.getItemList();
     }    
 
+    /**
+     * Get the value of date
+     * 
+     * @return the value of date
+     */
     public LocalDate getDate(){
         return date;
     }
 
+    /**
+     * Get the value of time
+     * 
+     * @return the value of time
+     */
     public LocalTime getTime(){
         return time;
     }
 
+    /**
+     * Get the value of grossPrice
+     * 
+     * @return the value of grossPrice
+     */
     public double getGrossPrice(){
         return grossPrice;
     }
 
+    /**
+     * Get the value of netPrice
+     * 
+     * @return the value of netPrice
+     */
     public double getNetPrice(){
         return netPrice;
     }
 
+    /**
+     * Get the value of itemList
+     * 
+     * @return the value of itemList
+     */
     public ArrayList<Item> getItemList(){
         return itemList;
     }

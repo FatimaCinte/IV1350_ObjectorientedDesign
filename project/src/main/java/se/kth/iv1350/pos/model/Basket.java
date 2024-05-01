@@ -5,26 +5,49 @@ import java.util.ArrayList;
 import se.kth.iv1350.pos.integration.BasketDTO;
 import se.kth.iv1350.pos.integration.DiscountDTO;
 import se.kth.iv1350.pos.integration.ItemDTO;
+import se.kth.iv1350.pos.integration.PriceDetails;
 
 public class Basket {
     private ArrayList<Item> itemList;
+    private Item latestItem;
     private PriceDetails priceDetails;
-    private BasketDTO basketDTO;
 
+    /**
+     * Creates an instance of Basket
+     */
     Basket() {
         itemList = new ArrayList<Item>();
+        latestItem = null;
         priceDetails = new PriceDetails(0, 0);
-        basketDTO = new BasketDTO(itemList, null,  priceDetails);
     }
 
+    /**
+     * Get the value of basketDTO
+     * 
+     * @return the value of basketDTO
+     */
     BasketDTO getBasketDTO(){
+        BasketDTO basketDTO = new BasketDTO(itemList, latestItem, priceDetails);
         return basketDTO;
     }
     
+    /**
+     * Get the value of priceDetails
+     * 
+     * @return the value of priceDetails
+     */
     PriceDetails getPriceDetails() {
         return priceDetails;
     }
 
+    /**
+     * If item information belongs to a previously scanned item and already exists in basket, increase the quantity of that item with the given parameter.
+     * Otherwise, add the item to the basket. 
+     * Update price details.  
+     * 
+     * @param itemDTO The item information of a scanned item.
+     * @param quantity The quantity of a scanned item. 
+     */
     void updateBasket(ItemDTO itemDTO, int quantity) {
         int itemID = itemDTO.getItemID();
         boolean repeatedItem = searchForRepeatedItemInBasket(itemID);
@@ -35,7 +58,7 @@ public class Basket {
             Item item = new Item(itemDTO, quantity);
             addItemToBasket(item);
         }
-        updateRunningPriceDetails();
+        updateRunningPriceDetails(itemDTO, quantity);
 	}
 
     private void updateQuantityOfItemInList(int quantity, int itemID){
@@ -43,15 +66,14 @@ public class Basket {
             ItemDTO currentItemInformation = itemInItemList.getItemDTO();
             if (currentItemInformation.getItemID() == itemID) {
                 itemInItemList.updateQuantity(quantity);
-                addLatestItemToBasketDTO(itemInItemList);
+                latestItem = itemInItemList;
             }
         });
-        
     }
     
     private void addItemToBasket(Item itemToAdd){
         itemList.add(itemToAdd);
-        addLatestItemToBasketDTO(itemToAdd);
+        latestItem = itemToAdd;
     }
 
     private boolean searchForRepeatedItemInBasket(int itemID) {
@@ -63,29 +85,27 @@ public class Basket {
         }
         return false;
     }
-    
-    private void updateRunningPriceDetails() {
-        double grossPrice = 0;
-        double netPrice = 0;
-        for (int i = 0; i < itemList.size(); i++) {
-            Item itemInList = itemList.get(i);
-            ItemDTO itemInListInformation = itemInList.getItemDTO();
-            
-            double itemGrossPrice = itemInListInformation.getItemNetPrice();
-            int itemQuantity = itemInList.getQuantity();
-            int itemVatRate = itemInListInformation.getVatRate();
 
-            grossPrice += itemGrossPrice * itemQuantity;
-            netPrice += grossPrice + grossPrice * (itemVatRate/100);
-        }
+    private void updateRunningPriceDetails(ItemDTO itemDTO, int quantity) {
+        double newItemNetPrice = itemDTO.getItemNetPrice() * quantity;
+        int newItemVat = itemDTO.getVatRate();
+        double newItemGrossPrice = calculateGrossPriceFromNetPrice(newItemNetPrice, newItemVat);
+
+        double netPrice = priceDetails.getNetPrice() + newItemNetPrice;
+        double grossPrice = priceDetails.getGrossPrice() + newItemGrossPrice;
 
         priceDetails = new PriceDetails(grossPrice, netPrice);
     }
 
-    private void addLatestItemToBasketDTO (Item latestItem){
-        basketDTO = new BasketDTO(itemList, latestItem,  priceDetails);
+    private double calculateGrossPriceFromNetPrice(double netPrice, int itemVatRate) {
+        return netPrice - netPrice * (itemVatRate/(100.0 + itemVatRate));
     }
 
+    /**
+     * Applies discount to, and updates price details. 
+     * 
+     * @param discountDTO The discounts to be applied to the price details.
+     */
     void applyDiscount(DiscountDTO discountDTO) {
         double grossPrice = priceDetails.getGrossPrice();
         double netPrice = priceDetails.getNetPrice();

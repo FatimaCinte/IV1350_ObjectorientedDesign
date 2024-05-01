@@ -1,7 +1,6 @@
 package se.kth.iv1350.pos.model;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -36,7 +35,7 @@ public class ItemTest {
     }
 
     @Test
-    public void testQuantityIsNotEqualToNull(){
+    public void testQuantityIsNotEqualToZero(){
         assertFalse(quantity == 0, "Quantity was equal to 0");
     }
     
@@ -49,12 +48,12 @@ public class ItemTest {
     }
 
     @Test
-    public void testUpdateQuantityWithNull(){
-        int expResult = 1;
-        quantity = 0;
-        
+    public void testUpdateQuantityWithNegativeValue(){
+        int expResult = -4;
+        quantity = -5;
         instanceToTest.updateQuantity(quantity);
         int result = instanceToTest.getQuantity();
         assertEquals(result, expResult, "Wrong quantity returned");
+  
     }
 }

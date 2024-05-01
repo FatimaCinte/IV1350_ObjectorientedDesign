@@ -11,14 +11,29 @@ public class DiscountDTO {
         this. customerIDDiscount = customerIDDiscount;
     }
 
+    /**
+     * Get the value of itemListDiscount
+     * 
+     * @return the value of itemLsitDiscount
+     */
     public int getItemListDiscount(){
         return itemListDiscount;
     } 
 
+    /**
+     * Get the value of grossPriceDiscount
+     * 
+     * @return the value of grossPriceDiscount
+     */
     public double getGrossPriceDiscount(){
         return grossPriceDiscount;
     }
 
+    /**
+     * Get the value of customerIDDiscount
+     * 
+     * @return the value of customrIDDiscount
+     */
     public double getCustomerIDDiscount(){
         return customerIDDiscount;
     }

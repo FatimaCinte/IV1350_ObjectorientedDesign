@@ -7,5 +7,6 @@ public class AccountingHandler {
     }
 
     public void updateAccounting(SaleDTO saleInforamtion){
+        System.out.println("Sent sale info to external accounting system.");
     }
 }

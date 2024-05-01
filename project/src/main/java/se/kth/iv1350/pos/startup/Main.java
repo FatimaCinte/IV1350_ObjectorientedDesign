@@ -19,6 +19,8 @@ public class Main {
         
         View view = new View(controller);
         
+        
         view.fakeExecutionRun();
+
     }
 }

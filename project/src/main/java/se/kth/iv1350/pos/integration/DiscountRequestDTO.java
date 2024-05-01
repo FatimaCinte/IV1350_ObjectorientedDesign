@@ -9,10 +9,20 @@ public class DiscountRequestDTO {
         this.customerID = customerID;
     }
 
+    /**
+     * Get the value of basketDTO
+     * 
+     * @return the value of basketDTO
+     */
     public BasketDTO geBasketDTO(){
         return basketDTO;
     }
 
+    /**
+     * Get the value of customerID
+     * 
+     * @return the value of customerID
+     */
     public int getCustomerID(){
         return customerID;
     }

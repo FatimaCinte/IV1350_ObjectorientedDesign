@@ -11,15 +11,32 @@ public class Item {
         this.quantity = quantity;
     }
     
-    ItemDTO getItemDTO(){
+    /**
+     * Get the value of itemDTO
+     * 
+     * @return the value of itemDTO
+     */
+    public ItemDTO getItemDTO(){
         return itemDTO;
     }
 
-    int getQuantity(){
+    /**
+     * Get the value of quantity
+     * 
+     * @return the value of quantity
+     */
+    public int getQuantity(){
         return quantity;
     }
 
+    /**
+     * Updates the quantity.
+     * 
+     * @param quantity The amount to change this instance's quantity with.
+     */
     void updateQuantity(int quantity) {
         this.quantity += quantity;
     }
+        
+  
 }
