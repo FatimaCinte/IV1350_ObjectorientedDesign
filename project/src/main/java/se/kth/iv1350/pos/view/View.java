@@ -33,14 +33,14 @@ public class View {
         presentItemInformation(currentBaket);
 
         controller.endSale();
-        System.out.println("End sale: ");
-        System.out.println("Total cost (incl. VAT):     " + runningNetPrice + " SEK\n");
+        System.out.printf("End sale: \n");
+        System.out.printf("Total cost (incl. VAT):     %5.2f%s\n", runningNetPrice, " SEK\n");
 
         paidAmount = 100;
-        System.out.println("Customer pays:     " + paidAmount + " SEK\n");
+        System.out.printf("Customer pays:     %5.2f%s\n", paidAmount ," SEK\n");
 
         double changeAmount = controller.presentPayment(100);   
-        System.out.println("Change to give the customer:    " + changeAmount);     
+        System.out.printf("Change to give the customer:    %5.2f\n", changeAmount);     
     }
 
     private void presentItemInformation(BasketDTO basketDTO) {
@@ -52,14 +52,14 @@ public class View {
         runningGrossPrice = basketDTO.getPriceDetails().getGrossPrice();
         vatPrice = runningNetPrice - runningGrossPrice;
         
-        System.out.println("Latest scanned item: ");
-        System.out.println("Item ID:    " + itemID );
-        System.out.println("Item name:    " + name);
-        System.out.println("Item net price:     " + itemNetPrice + " SEK");
-        System.out.println("VAT:     " + vatRate + "%\n");
+        System.out.printf("Latest scanned item: \n");
+        System.out.printf("Item ID:     %d\n", itemID );
+        System.out.printf("Item name:     %s\n", name);
+        System.out.printf("Item net price:     %5.2f%s\n", itemNetPrice, " SEK");
+        System.out.printf("VAT:     %d\n\n", vatRate);
         
-        System.out.println("Total cost (incl. VAT):     " + runningNetPrice + " SEK");
-        System.out.println("Total VAT:     " + vatPrice + "+ SEK\n");
+        System.out.printf("Total cost (incl. VAT):     %5.2f%s\n",runningNetPrice," SEK");
+        System.out.printf("Total VAT:     %5.2f%s\n\n",vatPrice, " SEK");
         
     }
 }
