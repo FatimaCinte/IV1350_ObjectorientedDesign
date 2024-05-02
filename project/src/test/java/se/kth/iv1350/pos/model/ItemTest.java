@@ -10,11 +10,15 @@ import se.kth.iv1350.pos.integration.ItemDTO;
 
 public class ItemTest {
     private Item instanceToTest;
+    private int itemID = 777;
+    private String name = "Ravioli";
+    private double itemNetPrice = 35.5;
+    private int vatRate = 6;
     private int quantity = 1;
 
     @BeforeEach
     public void setUp(){
-        ItemDTO itemDTO = new ItemDTO(123, "BigWheel Oatmeal", 29.90, 6);;
+        ItemDTO itemDTO = new ItemDTO(itemID, name, itemNetPrice, vatRate);
         instanceToTest = new Item(itemDTO, quantity);
     }
 

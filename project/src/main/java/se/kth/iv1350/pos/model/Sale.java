@@ -12,6 +12,7 @@ import java.time.LocalTime;
 
 public class Sale {
     private Basket basket;
+
     private LocalTime time;
     private LocalDate date;
 
