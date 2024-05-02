@@ -12,6 +12,9 @@ class Basket {
     private Item latestItem;
     private PriceDetails priceDetails;
 
+    private static final int CHANGE_FACTOR_ONE = 1;
+    private static final double ONE_HUNDRED_PERCENT = 100.0;
+
     /**
      * Creates an instance of Basket
      */
@@ -98,7 +101,7 @@ class Basket {
     }
 
     private double calculateGrossPriceFromNetPrice(double netPrice, int itemVatRate) {
-        return netPrice - netPrice * (itemVatRate/(100.0 + itemVatRate));
+        return netPrice - netPrice * (itemVatRate/(ONE_HUNDRED_PERCENT + itemVatRate));
     }
 
     /**
@@ -121,7 +124,7 @@ class Basket {
         double grossPriceDiscount = discountDTO.getGrossPriceDiscount();
         double customerIDDiscount = discountDTO.getCustomerIDDiscount();
 
-        price = price * (1 - grossPriceDiscount) * (1 - customerIDDiscount) - itemListDiscount;
+        price = price * (CHANGE_FACTOR_ONE - grossPriceDiscount) * (CHANGE_FACTOR_ONE - customerIDDiscount) - itemListDiscount;
         
         return price;
     }
