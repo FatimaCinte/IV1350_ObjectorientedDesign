@@ -17,7 +17,7 @@ public class DiscountDTO {
     /**
      * Get the value of itemListDiscount
      * 
-     * @return the value of itemLsitDiscount
+     * @return the value of itemListDiscount
      */
     public int getItemListDiscount(){
         return itemListDiscount;
@@ -35,7 +35,7 @@ public class DiscountDTO {
     /**
      * Get the value of customerIDDiscount
      * 
-     * @return the value of customrIDDiscount
+     * @return the value of customerIDDiscount
      */
     public double getCustomerIDDiscount(){
         return customerIDDiscount;

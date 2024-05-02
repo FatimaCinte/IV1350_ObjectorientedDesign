@@ -22,7 +22,7 @@ public class Controller {
      * Creates an instance of Controller
      * 
      * @param accountingHandler 
-     * @param inventoryHanlder 
+     * @param inventoryHandler
      * @param discountDBHandler 
      * @param printerHandler 
      */

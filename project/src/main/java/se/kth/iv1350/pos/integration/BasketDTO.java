@@ -14,7 +14,11 @@ public class BasketDTO {
     private final PriceDetails priceDetails;
 
     /**
-     * 
+     * Creates an instance of a BasketDTO
+     *
+     * @param itemList a list of the Items in the BasketDTO
+     * @param latestAddItem the latest added Item to the BasketDTO
+     * @param priceDetails the PriceDetails of the BasketDTO
      */
     public BasketDTO(ArrayList<Item> itemList, Item latestAddItem, PriceDetails priceDetails) {
         this.itemList = itemList;
@@ -34,12 +38,17 @@ public class BasketDTO {
     /**
      * Gets the latest Item added to the BasketDTO
      * 
-     * @return 
+     * @return the latest Item added to the BasketDTO
      */
     public Item getLatestItem(){
         return latestAddedItem;
     }
 
+    /**
+     * Get the priceDetails of the BasketDTO
+     *
+     * @return the priceDetails of the BasketDTO
+     */
     public PriceDetails getPriceDetails() {
         return priceDetails;
     }
