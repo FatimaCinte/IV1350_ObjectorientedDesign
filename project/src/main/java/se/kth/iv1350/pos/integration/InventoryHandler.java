@@ -15,11 +15,15 @@ public class InventoryHandler {
 
     public InventoryHandler(){
         inventory = new ArrayList<ItemDTO>();
-        inventory.add(oatmeal);
-        inventory.add(oatmeal);
-        inventory.add(yoghurt);
-        inventory.add(pasta);
-        inventory.add(bread);
+        addItemtoInventory(oatmeal);
+        addItemtoInventory(oatmeal);
+        addItemtoInventory(yoghurt);
+        addItemtoInventory(pasta);
+        addItemtoInventory(bread);
+    }
+
+    private void addItemtoInventory(ItemDTO itemToAdd){
+        inventory.add(itemToAdd);
     }
 
     /**

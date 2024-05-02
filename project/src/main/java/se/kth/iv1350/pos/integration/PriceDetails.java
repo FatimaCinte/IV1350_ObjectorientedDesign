@@ -1,8 +1,11 @@
 package se.kth.iv1350.pos.integration;
 
+/**
+ * Represents the price data for a sale, in a basket. Instances are immutable.
+ */
 public class PriceDetails {
-    private double grossPrice;
-    private double netPrice;
+    private final double grossPrice;
+    private final double netPrice;
 
     public PriceDetails(double grossPrice, double netPrice) {
         this.grossPrice = grossPrice;
