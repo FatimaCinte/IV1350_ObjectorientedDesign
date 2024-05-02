@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import se.kth.iv1350.pos.model.Item;
 import se.kth.iv1350.pos.model.Receipt;
 
+
 public class PrinterHandler {
     private String name;
     private int quantity;
@@ -26,6 +27,10 @@ public class PrinterHandler {
         
     }
 
+    /**
+     * Prints out a receipt.
+     * @param receipt the receipt to be printed ou
+     */
     public void printReceipt(Receipt receipt){
         System.out.println(createReceiptString(receipt));
     }

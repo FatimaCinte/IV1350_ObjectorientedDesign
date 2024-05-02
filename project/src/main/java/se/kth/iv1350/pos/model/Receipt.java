@@ -2,12 +2,15 @@ package se.kth.iv1350.pos.model;
 
 import se.kth.iv1350.pos.integration.SaleDTO;
 
+/**
+ * Represents a receipt for a sale.
+ */
 public class Receipt {
     private SaleDTO saleInformation;
     private double paidAmount;
     private double changeAmount;
 
-    public Receipt(SaleDTO saleInformation, double paidAmount, double changeAmount){
+    Receipt(SaleDTO saleInformation, double paidAmount, double changeAmount){
         this.saleInformation = saleInformation;
         this.paidAmount = paidAmount;
         this.changeAmount = changeAmount;

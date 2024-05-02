@@ -5,6 +5,11 @@ import se.kth.iv1350.pos.model.Sale;
 import se.kth.iv1350.pos.integration.PriceDetails;
 import se.kth.iv1350.pos.model.Receipt;
 
+
+/**
+* This is the application’s only controller class. 
+* All calls to the model pass through here.
+*/
 public class Controller {
 	private AccountingHandler accountingHandler;
     private InventoryHandler inventoryHandler;

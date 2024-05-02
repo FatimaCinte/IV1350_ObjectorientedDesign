@@ -6,6 +6,10 @@ import java.time.LocalTime;
 
 import se.kth.iv1350.pos.model.Item;
 
+
+/**
+ * Represents the data sale holds, which is sent to external systems. Instances are immutable.
+ */
 public class SaleDTO {
     private final LocalDate date;
     private final LocalTime time;

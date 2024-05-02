@@ -10,12 +10,19 @@ import se.kth.iv1350.pos.integration.BasketDTO;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
+/**
+ * Represents a sale. 
+ * The interface for controller to the model layer.
+ */
 public class Sale {
     private Basket basket;
 
     private LocalTime time;
     private LocalDate date;
 
+    /**
+     * Creates an instance of Sale.
+     */
     public Sale() {
         date = LocalDate.now();
         time = LocalTime.now();

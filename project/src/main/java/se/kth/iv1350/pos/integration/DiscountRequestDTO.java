@@ -1,5 +1,8 @@
 package se.kth.iv1350.pos.integration;
 
+/**
+ * Represents the data needed for a discount request. Instances are immutable.
+ */
 public class DiscountRequestDTO {
     private BasketDTO basketDTO;
     private int customerID;

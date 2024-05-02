@@ -16,10 +16,17 @@ public class View {
 
     private BasketDTO currentBaket;
 
+    /**
+     * Creates an instance of View.
+     * @param controller a reference to the controller as an interface for the sale process.
+     */
     public View(Controller controller){
         this.controller = controller;
     }
 
+    /** 
+    * A fake run of the sale process.   
+    */
     public void fakeExecutionRun(){
         controller.startSale();
 
@@ -56,7 +63,7 @@ public class View {
         System.out.printf("Item ID:     %d\n", itemID );
         System.out.printf("Item name:     %s\n", name);
         System.out.printf("Item net price:     %5.2f%s\n", itemNetPrice, " SEK");
-        System.out.printf("VAT:     %d\n\n", vatRate);
+        System.out.printf("VAT:     %d%%\n\n", vatRate);
         
         System.out.printf("Total cost (incl. VAT):     %5.2f%s\n",runningNetPrice," SEK");
         System.out.printf("Total VAT:     %5.2f%s\n\n",vatPrice, " SEK");

@@ -4,6 +4,10 @@ import java.util.ArrayList;
 
 import se.kth.iv1350.pos.model.Item;
 
+
+/**
+ * Represents the data basket holds. Instances are immutable.
+ */
 public class BasketDTO {
     private final ArrayList<Item> itemList;
     private final Item latestAddedItem;

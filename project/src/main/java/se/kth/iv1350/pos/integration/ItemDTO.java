@@ -1,5 +1,9 @@
 package se.kth.iv1350.pos.integration;
 
+
+/**
+ * Represents item information. Instances are immutable.
+ */
 public class ItemDTO {
     private final int itemID;
     private final String name;

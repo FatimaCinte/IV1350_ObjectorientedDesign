@@ -2,6 +2,12 @@ package se.kth.iv1350.pos.model;
 
 import se.kth.iv1350.pos.integration.ItemDTO;
 
+
+/**
+ * Represents an item bought at sale.
+ * itemDTO is immutable, and represents item information.
+ * quantity represents the amount of the same item bought.
+ */
 public class Item {
     private final ItemDTO itemDTO;
     private int quantity;

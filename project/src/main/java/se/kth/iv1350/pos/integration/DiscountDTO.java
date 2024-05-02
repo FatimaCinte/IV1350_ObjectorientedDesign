@@ -1,5 +1,8 @@
 package se.kth.iv1350.pos.integration;
 
+/**
+ * Represents discounts to be applied to sale. Instances are immutable.
+ */
 public class DiscountDTO {
     private final int itemListDiscount;
     private final double grossPriceDiscount;

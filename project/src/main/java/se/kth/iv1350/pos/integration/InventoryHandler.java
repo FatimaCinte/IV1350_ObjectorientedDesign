@@ -16,11 +16,17 @@ public class InventoryHandler {
     public InventoryHandler(){
         inventory = new ArrayList<ItemDTO>();
         inventory.add(oatmeal);
+        inventory.add(oatmeal);
         inventory.add(yoghurt);
         inventory.add(pasta);
         inventory.add(bread);
     }
 
+    /**
+     * Get the item information about an item with a given id.
+     * @param itemID The requested item's id. 
+     * @return Item information about an item with a given id.
+     */
     public ItemDTO getItemDTO(int itemID) {
         for (ItemDTO itemDTO : inventory) {
             if (itemDTO.getItemID() == itemID) {
@@ -30,6 +36,10 @@ public class InventoryHandler {
         return null;
     }
 
+    /**
+     * Updates inventory with the items sold at sale.
+     * @param saleInforamtion contains the information about the sold items.
+     */
     public void updateInventory(SaleDTO saleInforamtion){
         ArrayList<Item> itemList = saleInforamtion.getItemList();
         for (Item itemInList : itemList) {

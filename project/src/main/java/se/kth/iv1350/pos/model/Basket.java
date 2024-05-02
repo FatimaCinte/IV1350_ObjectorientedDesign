@@ -7,7 +7,7 @@ import se.kth.iv1350.pos.integration.DiscountDTO;
 import se.kth.iv1350.pos.integration.ItemDTO;
 import se.kth.iv1350.pos.integration.PriceDetails;
 
-public class Basket {
+class Basket {
     private ArrayList<Item> itemList;
     private Item latestItem;
     private PriceDetails priceDetails;

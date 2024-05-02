@@ -9,6 +9,10 @@ import se.kth.iv1350.pos.view.View;
 
 public class Main {
 
+    /**
+     * Starts the systems of the sale process up.
+     * @param args 
+     */
 	public static void main(String[] args) {
         AccountingHandler accountingHandler = new AccountingHandler();
         InventoryHandler inventoryHandler = new InventoryHandler();
