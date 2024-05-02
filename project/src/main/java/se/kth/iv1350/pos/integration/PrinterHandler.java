@@ -55,18 +55,18 @@ public class PrinterHandler {
         endSection(builder);
 
         totalNetPrice = saleInformation.getNetPrice();
-        appendLine(builder, "Total:                                         " + totalNetPrice + " SEK");
+        appendLine(builder, String.format("Total:                                         %5.2f%s", totalNetPrice, " SEK" ));
         
         totalGrossPrice = saleInformation.getGrossPrice();
         vatPrice = calulateVatPrice(totalGrossPrice, totalNetPrice);
-        appendLine(builder, "VAT:                                            " + vatPrice + " SEK");
+        appendLine(builder, String.format("VAT:                                             %5.2f%s", vatPrice," SEK"));
         endSection(builder);
         
         paidAmount = receipt.getPaidAmount();
-        appendLine(builder, "Cash:                                            " + paidAmount + " SEK");
-        
+        appendLine(builder, String.format("Cash:                                            %5.2f%s", paidAmount ," SEK"));
+    
         changeAmount = receipt.getChangeAmount();
-        appendLine(builder, "Change:                                         " + changeAmount + " SEK");
+        appendLine(builder, String.format("Change:                                         %5.2f%s" , changeAmount ," SEK"));
         endSection(builder);
         appendLine(builder, "***********************End receipt**********************");
 
