@@ -7,6 +7,12 @@ public class PriceDetails {
     private final double grossPrice;
     private final double netPrice;
 
+    /**
+     * Creates an instance of price details
+     *
+     * @param grossPrice the gross price
+     * @param netPrice the net price
+     */
     public PriceDetails(double grossPrice, double netPrice) {
         this.grossPrice = grossPrice;
         this.netPrice = netPrice;

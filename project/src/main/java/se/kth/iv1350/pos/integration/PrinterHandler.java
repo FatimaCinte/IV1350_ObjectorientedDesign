@@ -23,6 +23,9 @@ public class PrinterHandler {
     private double paidAmount;
     private double changeAmount;
 
+    /**
+     * Creates an instance of a printer handler
+     */
     public PrinterHandler() {
         
     }

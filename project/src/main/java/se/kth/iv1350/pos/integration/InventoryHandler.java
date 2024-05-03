@@ -13,6 +13,9 @@ public class InventoryHandler {
 
     private ArrayList<ItemDTO> inventory;
 
+    /**
+     * Creates an instance of an inventory handler
+     */
     public InventoryHandler(){
         inventory = new ArrayList<ItemDTO>();
         addItemtoInventory(oatmeal);

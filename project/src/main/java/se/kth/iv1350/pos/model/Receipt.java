@@ -10,6 +10,13 @@ public class Receipt {
     private double paidAmount;
     private double changeAmount;
 
+    /**
+     * Creates a new instance of a receipt for a sale
+     *
+     * @param saleInformation the SaleInformation to be printed on the receipt
+     * @param paidAmount the amount paid by the customer
+     * @param changeAmount the amount of change given to the customer
+     */
     Receipt(SaleDTO saleInformation, double paidAmount, double changeAmount){
         this.saleInformation = saleInformation;
         this.paidAmount = paidAmount;

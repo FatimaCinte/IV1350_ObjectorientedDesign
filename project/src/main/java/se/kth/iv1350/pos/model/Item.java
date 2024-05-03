@@ -12,6 +12,12 @@ public class Item {
     private final ItemDTO itemDTO;
     private int quantity;
 
+    /**
+     * Creates an instance of an item
+     *
+     * @param itemDTO the ItemDTO containing the name, id and other info about the item
+     * @param quantity the quantity of the item
+     */
     Item(ItemDTO itemDTO, int quantity) {
         this.itemDTO = itemDTO;
         this.quantity = quantity;

@@ -17,6 +17,13 @@ public class SaleDTO {
     private final double netPrice;
     private final ArrayList<Item> itemList;
 
+    /**
+     * Creates an instance of a SaleDTO
+     *
+     * @param date the date of the sale
+     * @param time the time of the sale
+     * @param basketDTO the BasketDTO with the items bought at the sale
+     */
     public SaleDTO(LocalDate date, LocalTime time, BasketDTO basketDTO){
         this.date = date;
         this.time = time;
