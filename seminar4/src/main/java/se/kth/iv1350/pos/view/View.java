@@ -1,7 +1,10 @@
 package se.kth.iv1350.pos.view;
 
 import se.kth.iv1350.pos.controller.Controller;
+import se.kth.iv1350.pos.controller.OperationFailedException;
 import se.kth.iv1350.pos.integration.BasketDTO;
+import se.kth.iv1350.pos.integration.ItemNotFoundException;
+import se.kth.iv1350.pos.integration.DatabaseConnectionException;
 
 public class View {
     private Controller controller;
@@ -14,7 +17,7 @@ public class View {
     private double vatPrice;
     private double paidAmount;
 
-    private BasketDTO currentBaket;
+    private BasketDTO currentBasket;
 
     /**
      * Creates an instance of View.
@@ -30,14 +33,11 @@ public class View {
     public void fakeExecutionRun(){
         controller.startSale();
 
-        currentBaket = controller.scanItem(123, 1);
-        presentItemInformation(currentBaket);
+        scanItem(123, 1); 
 
-        currentBaket = controller.scanItem(123, 1);
-        presentItemInformation(currentBaket);
+        scanItem(123456, 1);
 
-        currentBaket = controller.scanItem(456, 1);
-        presentItemInformation(currentBaket);
+        scanItem(666, 1);
 
         controller.endSale();
         System.out.printf("End sale: \n");
@@ -50,6 +50,17 @@ public class View {
         System.out.printf("Change to give the customer:    %5.2f\n", changeAmount);     
     }
 
+    private void scanItem(int itemID, int quantity) {
+        try {
+            currentBasket = controller.scanItem(itemID, quantity);
+            presentItemInformation(currentBasket);
+        } catch (ItemNotFoundException exc) {
+            System.out.println(exc.getMessage() + "\n");
+        } catch (OperationFailedException exc){
+            System.out.println(exc.getMessage() + "\n");
+        }   
+    }
+    
     private void presentItemInformation(BasketDTO basketDTO) {
         itemID = basketDTO.getLatestItem().getItemDTO().getItemID();
         name = basketDTO.getLatestItem().getItemDTO().getItemName();

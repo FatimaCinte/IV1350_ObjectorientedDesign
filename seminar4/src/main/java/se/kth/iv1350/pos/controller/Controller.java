@@ -2,7 +2,7 @@ package se.kth.iv1350.pos.controller;
 
 import se.kth.iv1350.pos.integration.*;
 import se.kth.iv1350.pos.model.Sale;
-import se.kth.iv1350.pos.integration.PriceDetails;
+import se.kth.iv1350.pos.util.FileLogger;
 import se.kth.iv1350.pos.model.Receipt;
 
 
@@ -46,11 +46,19 @@ public class Controller {
      * @param itemID The id of the scanned item.
      * @param quantity The quantity of the scanned item. 
      * @return The BasketDTO representing the current Basket. 
+     * @throws ItemNotFoundException if the item ID was not found
+     * @throws OperationFailedException if the scan failed for any other reason than a missing item ID
      */
-    public BasketDTO scanItem(int itemID, int quantity) {
-        ItemDTO itemDTO = inventoryHandler.getItemDTO(itemID);
-        BasketDTO basketDTO = sale.scanItem(itemDTO, quantity);
-        return basketDTO;
+    public BasketDTO scanItem(int itemID, int quantity) throws ItemNotFoundException, OperationFailedException{
+        try {
+            ItemDTO itemDTO = inventoryHandler.getItemDTO(itemID);
+            BasketDTO basketDTO = sale.scanItem(itemDTO, quantity);
+            return basketDTO;
+        } catch (DatabaseConnectionException exc) {
+            FileLogger fileLogger = new FileLogger();
+            fileLogger.logException(exc);
+            throw new OperationFailedException("Could not scan item.", exc);
+        }
     }
 
     /**
