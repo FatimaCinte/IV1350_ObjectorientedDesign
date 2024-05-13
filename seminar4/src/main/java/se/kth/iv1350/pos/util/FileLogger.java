@@ -21,4 +21,8 @@ public class FileLogger {
         logFile.println(exc.getMessage() + "\n");
         exc.printStackTrace(logFile);
     }
+
+    public void logMessage(String msg){
+        logFile.println(msg + "\n");
+    }
 }

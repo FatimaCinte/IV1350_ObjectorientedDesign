@@ -9,6 +9,7 @@ import se.kth.iv1350.pos.integration.BasketDTO;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.List;
 
 /**
  * Represents a sale. 
@@ -23,10 +24,10 @@ public class Sale {
     /**
      * Creates an instance of Sale.
      */
-    public Sale() {
+    public Sale(List<BasketObserver> basketObservers) {
         date = LocalDate.now();
         time = LocalTime.now();
-        basket = new Basket();
+        basket = new Basket(basketObservers);
     }
 
     /**

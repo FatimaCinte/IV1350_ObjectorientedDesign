@@ -1,8 +1,12 @@
 package se.kth.iv1350.pos.controller;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import se.kth.iv1350.pos.integration.*;
 import se.kth.iv1350.pos.model.Sale;
 import se.kth.iv1350.pos.util.FileLogger;
+import se.kth.iv1350.pos.model.BasketObserver;
 import se.kth.iv1350.pos.model.Receipt;
 
 
@@ -11,6 +15,9 @@ import se.kth.iv1350.pos.model.Receipt;
 * All calls to the model pass through here.
 */
 public class Controller {
+    private FileLogger fileLogger;
+    private List<BasketObserver> basketObservers = new ArrayList<>();
+
 	private AccountingHandler accountingHandler;
     private InventoryHandler inventoryHandler;
 	private DiscountDBHandler discountDBHandler;
@@ -33,11 +40,19 @@ public class Controller {
         this.printerHandler = printerHandler;
     }
 
+    public void setFileLogger(FileLogger fileLogger){
+        this.fileLogger = fileLogger;
+    }
+
+    public void addBasketObserver(BasketObserver obs){
+        basketObservers.add(obs);
+    }
+
     /**
      * Creates an instance of Sale. 
      */
     public void startSale() {
-        sale = new Sale();
+        sale = new Sale(basketObservers);
     }
 
     /**
@@ -55,7 +70,6 @@ public class Controller {
             BasketDTO basketDTO = sale.scanItem(itemDTO, quantity);
             return basketDTO;
         } catch (DatabaseConnectionException exc) {
-            FileLogger fileLogger = new FileLogger();
             fileLogger.logException(exc);
             throw new OperationFailedException("Could not scan item.", exc);
         }

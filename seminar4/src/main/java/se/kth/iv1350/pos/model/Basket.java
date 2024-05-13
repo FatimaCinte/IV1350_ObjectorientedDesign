@@ -1,6 +1,7 @@
 package se.kth.iv1350.pos.model;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import se.kth.iv1350.pos.integration.BasketDTO;
 import se.kth.iv1350.pos.integration.DiscountDTO;
@@ -8,6 +9,8 @@ import se.kth.iv1350.pos.integration.ItemDTO;
 import se.kth.iv1350.pos.integration.PriceDetails;
 
 class Basket {
+    private List<BasketObserver> basketObservers = new ArrayList<>();
+
     private ArrayList<Item> itemList;
     private Item latestItem;
     private PriceDetails priceDetails;
@@ -18,10 +21,21 @@ class Basket {
     /**
      * Creates an instance of Basket
      */
-    Basket() {
+    Basket(List<BasketObserver> basketObservers) {
         itemList = new ArrayList<Item>();
         latestItem = null;
         priceDetails = new PriceDetails(0, 0);
+        this.basketObservers = basketObservers;
+    }
+
+    private void notifyObservers() {
+        for (BasketObserver obs : basketObservers) {
+            obs.newScan(priceDetails);
+        }
+    }
+
+    public void addObservers(BasketObserver obs){
+        basketObservers.add(obs);
     }
 
     /**
@@ -62,6 +76,7 @@ class Basket {
             addItemToBasket(item);
         }
         updateRunningPriceDetails(itemDTO, quantity);
+        notifyObservers();
 	}
 
     private void updateQuantityOfItemInList(int quantity, int itemID){

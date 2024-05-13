@@ -4,9 +4,11 @@ import se.kth.iv1350.pos.controller.Controller;
 import se.kth.iv1350.pos.controller.OperationFailedException;
 import se.kth.iv1350.pos.integration.BasketDTO;
 import se.kth.iv1350.pos.integration.ItemNotFoundException;
-import se.kth.iv1350.pos.integration.DatabaseConnectionException;
+import se.kth.iv1350.pos.util.FileLogger;
 
 public class View {
+    private FileLogger fileLogger = new FileLogger();
+
     private Controller controller;
     private String name;
     private int itemID;
@@ -25,6 +27,9 @@ public class View {
      */
     public View(Controller controller){
         this.controller = controller;
+        controller.setFileLogger(fileLogger);
+        controller.addBasketObserver(new TotalRevenueView());
+        controller.addBasketObserver(new TotalRevenueFileOutput(fileLogger));
     }
 
     /** 
@@ -35,7 +40,7 @@ public class View {
 
         scanItem(123, 1); 
 
-        scanItem(123456, 1);
+        scanItem(123, 1);
 
         scanItem(666, 1);
 
