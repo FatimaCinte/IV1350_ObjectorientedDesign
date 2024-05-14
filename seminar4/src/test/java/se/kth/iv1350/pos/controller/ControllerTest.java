@@ -2,6 +2,7 @@ package se.kth.iv1350.pos.controller;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import java.util.ArrayList;
+import java.util.List;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -12,7 +13,9 @@ import se.kth.iv1350.pos.integration.BasketDTO;
 import se.kth.iv1350.pos.integration.DiscountDBHandler;
 import se.kth.iv1350.pos.integration.InventoryHandler;
 import se.kth.iv1350.pos.integration.ItemDTO;
+import se.kth.iv1350.pos.integration.ItemNotFoundException;
 import se.kth.iv1350.pos.integration.PrinterHandler;
+import se.kth.iv1350.pos.model.BasketObserver;
 import se.kth.iv1350.pos.model.Item;
 import se.kth.iv1350.pos.integration.PriceDetails;
 
@@ -22,6 +25,7 @@ public class ControllerTest {
     private InventoryHandler inventoryHandler;
     private DiscountDBHandler discountDBHandler;
     private PrinterHandler printerHandler;
+    private List<BasketObserver> basketObservers;
 
     private ItemDTO oatmeal;
 
@@ -32,6 +36,7 @@ public class ControllerTest {
         discountDBHandler = new DiscountDBHandler();
         printerHandler = new PrinterHandler();
         controller = new Controller(accountingHandler, inventoryHandler, discountDBHandler, printerHandler);
+        basketObservers = new ArrayList<>();
         controller.startSale();
         oatmeal = new ItemDTO(123, "BigWheel Oatmeal", 29.90, 6);
     }
@@ -43,7 +48,7 @@ public class ControllerTest {
 
 
     @Test
-    public void testScanItem(){
+    public void testScanItem() throws ItemNotFoundException, OperationFailedException{
         BasketDTO basketDTO = controller.scanItem(123, 1);
         ArrayList<Item> itemsInBasket = basketDTO.getItemList();
         ItemDTO itemInBasket = itemsInBasket.get(0).getItemDTO();
@@ -53,7 +58,7 @@ public class ControllerTest {
     }
 
     @Test 
-    public void testPositivePayment(){
+    public void testPositivePayment() throws ItemNotFoundException, OperationFailedException{
         double paidAmount = 100;
 
         controller.scanItem(456, 1);
@@ -64,7 +69,7 @@ public class ControllerTest {
     }
 
     @Test
-    public void testZeroPayment(){
+    public void testZeroPayment() throws Exception{
         double paidAmount = 0;
 
         controller.scanItem(456, 1);
@@ -76,7 +81,7 @@ public class ControllerTest {
     }
     
     @Test
-    public void testEndSale(){
+    public void testEndSale() throws Exception{
         PriceDetails expectedResult = new PriceDetails(75.28301886792453, 79.8);
 
         controller.scanItem(123, 2);

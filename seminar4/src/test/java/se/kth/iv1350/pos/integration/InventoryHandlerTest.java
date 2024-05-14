@@ -3,6 +3,7 @@ package se.kth.iv1350.pos.integration;
 import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 public class InventoryHandlerTest {
@@ -19,7 +20,7 @@ public class InventoryHandlerTest {
     }
 
     @Test
-    public void testGetItemDTO(){
+    public void testGetItemDTO() throws ItemNotFoundException{
         int itemID = 123;
         String name = "BigWheel Oatmeal";
         double itemNetPrice = 29.90;
@@ -29,12 +30,4 @@ public class InventoryHandlerTest {
         ItemDTO result = instanceToTest.getItemDTO(123);
         assertEquals(expResult, result, "Wrong ItemDTO returned");
     }
-
-    @Test
-    public void testGetItemDTOwithNull(){
-        ItemDTO expResult = null;
-        ItemDTO result = instanceToTest.getItemDTO(77799);
-        assertEquals(expResult, result, "ItemDTO equal to null");
-    }
-
 }

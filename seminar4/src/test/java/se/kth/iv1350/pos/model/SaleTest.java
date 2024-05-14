@@ -3,6 +3,7 @@ package se.kth.iv1350.pos.model;
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -22,11 +23,13 @@ public class SaleTest {
     private BasketDTO basketDTO;
     private ItemDTO pasta;
     private ItemDTO bread;
+    private List<BasketObserver> basketObservers;
 
     @BeforeEach
     public void setUp(){
-        instanceOfSale = new Sale();
-        instanceOfBasket = new Basket();
+        basketObservers = new ArrayList<>();
+        instanceOfSale = new Sale(basketObservers);
+        instanceOfBasket = new Basket(basketObservers);
         pasta = new ItemDTO(1, "Barilla Spaghetti", 20, 6);
         bread = new ItemDTO(2, "Varsågod", 13, 6);
     }

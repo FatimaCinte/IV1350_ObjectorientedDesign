@@ -8,6 +8,7 @@ import se.kth.iv1350.pos.integration.BasketDTO;
 import se.kth.iv1350.pos.integration.ItemDTO;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -16,12 +17,14 @@ public class BasketTest {
     private ItemDTO pastaDTO;
     private ItemDTO breadDTO;
     private BasketDTO basketDTO;
+    private List<BasketObserver> basketObservers;
 
     @BeforeEach
     public void setUp() {
         pastaDTO = new ItemDTO(1, "Barilla Spaghetti", 20, 6);
         breadDTO = new ItemDTO(2, "Varsågod", 13, 6);
-        basket = new Basket();
+        basketObservers = new ArrayList<>();
+        basket = new Basket(basketObservers);
     }
 
     @AfterEach
