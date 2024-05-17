@@ -1,10 +1,14 @@
 package se.kth.iv1350.pos.model.discountappliers;
 
+import java.util.ArrayList;
+
+import se.kth.iv1350.pos.integration.DiscountDTO;
+
 class CompositeDiscountApplier implements DiscountApplier {
     private ArrayList<DiscountApplier> discountAppliers;
 
     CompositeDiscountApplier() {
-        discountAppliers = new ArrayList<DiscountApplier>;
+        discountAppliers = new ArrayList<DiscountApplier>();
     }
 
     @Override

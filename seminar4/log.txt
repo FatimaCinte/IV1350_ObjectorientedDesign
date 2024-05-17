@@ -3,11 +3,11 @@ Unable to connect to the database.
 se.kth.iv1350.pos.integration.DatabaseConnectionException: Unable to connect to the database.
 	at se.kth.iv1350.pos.integration.InventoryHandler.getItemDTO(InventoryHandler.java:43)
 	at se.kth.iv1350.pos.controller.Controller.scanItem(Controller.java:69)
-	at se.kth.iv1350.pos.controller.OperationFailedExceptionTest.lambda$0(OperationFailedExceptionTest.java:54)
+	at se.kth.iv1350.pos.controller.OperationFailedExceptionTest.lambda$operationFailedExceptionTest$0(OperationFailedExceptionTest.java:42)
 	at org.junit.jupiter.api.AssertThrows.assertThrows(AssertThrows.java:54)
 	at org.junit.jupiter.api.AssertThrows.assertThrows(AssertThrows.java:36)
 	at org.junit.jupiter.api.Assertions.assertThrows(Assertions.java:1179)
-	at se.kth.iv1350.pos.controller.OperationFailedExceptionTest.operationFailedExceptionTest(OperationFailedExceptionTest.java:54)
+	at se.kth.iv1350.pos.controller.OperationFailedExceptionTest.operationFailedExceptionTest(OperationFailedExceptionTest.java:42)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
 	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)

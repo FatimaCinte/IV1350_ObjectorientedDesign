@@ -7,7 +7,6 @@ import se.kth.iv1350.pos.integration.BasketDTO;
 import se.kth.iv1350.pos.integration.DiscountDTO;
 import se.kth.iv1350.pos.integration.ItemDTO;
 import se.kth.iv1350.pos.integration.PriceDetails;
-import se.kth.iv1350.pos.model.discountappliers.DiscountApplier;
 import se.kth.iv1350.pos.model.discountappliers.DiscountApplierFactory;
 
 class Basket {
@@ -17,7 +16,6 @@ class Basket {
     private Item latestItem;
     private PriceDetails priceDetails;
 
-    private static final int CHANGE_FACTOR_ONE = 1;
     private static final double ONE_HUNDRED_PERCENT = 100.0;
 
     /**

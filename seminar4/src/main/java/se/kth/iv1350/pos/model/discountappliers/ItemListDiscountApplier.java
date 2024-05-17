@@ -5,13 +5,13 @@ import se.kth.iv1350.pos.integration.DiscountDTO;
 /**
  * ItemListDiscountApplier
  */
-ItemListDiscountApplier implements DiscountApplier {
+class ItemListDiscountApplier implements DiscountApplier {
 
-    ItemtDiscountApplier() {
+    ItemListDiscountApplier() {
     }
 
     @Override
-    public public double applyDiscount(double price, DiscountDTO discountDTO) {
+    public double applyDiscount(double price, DiscountDTO discountDTO) {
         int itemListDiscount = discountDTO.getItemListDiscount();
         price = price - itemListDiscount;
         return price;

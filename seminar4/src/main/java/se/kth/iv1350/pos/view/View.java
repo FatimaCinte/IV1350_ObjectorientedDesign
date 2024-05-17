@@ -48,6 +48,8 @@ public class View {
         System.out.printf("End sale: \n");
         System.out.printf("Total cost (incl. VAT):     %5.2f%s\n", runningNetPrice, " SEK\n");
 
+        controller.requestDiscount(123);
+
         paidAmount = 100;
         System.out.printf("Customer pays:     %5.2f%s\n", paidAmount ," SEK\n");
 
