@@ -134,12 +134,12 @@ class Basket {
         priceDetails = new PriceDetails(grossPrice, netPrice);
     }
 
-    private double applyDiscount(double price, DiscountDTO discountDTO){
-        double itemListDiscount = discountDTO.getItemListDiscount();
-        double grossPriceDiscount = discountDTO.getGrossPriceDiscount();
-        double customerIDDiscount = discountDTO.getCustomerIDDiscount();
-
-        price = price * (CHANGE_FACTOR_ONE - grossPriceDiscount) * (CHANGE_FACTOR_ONE - customerIDDiscount) - itemListDiscount;
+    private double applyDiscount(double price, DiscountDTO discountDTO) {
+        DiscountApplier discountApplier = new CompositePriceDiscountApplier();
+        discountApplier.addApplier(new NetPriceDiscountApplier());
+        price = new NetPriceDiscountApplier().applyDiscount(price, discountDTO);
+        price = new CustomerIDDiscountApplier().applyDiscount(price, discountDTO);
+        price = new ItemListDiscountApplier().applyDiscount(price, discountDTO);
         
         return price;
     }

@@ -36,7 +36,7 @@ public class InventoryHandler {
      * @param itemID The requested item's id. 
      * @return Item information about an item with a given id.
      * @throws ItemNotFoundException if an unknown itemID is scanned
-     * @throws DatabaseConnectionException if the database call failed
+     * @throws DatabaseConnectionExceptionTest if the database call failed
      */
     public ItemDTO getItemDTO(int itemID) throws ItemNotFoundException {
         if (itemID == databaseDown) {
