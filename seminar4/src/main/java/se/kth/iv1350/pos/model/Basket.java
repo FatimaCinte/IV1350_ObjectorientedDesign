@@ -7,6 +7,7 @@ import se.kth.iv1350.pos.integration.BasketDTO;
 import se.kth.iv1350.pos.integration.DiscountDTO;
 import se.kth.iv1350.pos.integration.ItemDTO;
 import se.kth.iv1350.pos.integration.PriceDetails;
+import se.kth.iv1350.pos.model.discountappliers.DiscountApplier;
 
 class Basket {
     private List<BasketObserver> basketObservers = new ArrayList<>();
@@ -135,12 +136,8 @@ class Basket {
     }
 
     private double applyDiscount(double price, DiscountDTO discountDTO) {
-        DiscountApplier discountApplier = new CompositePriceDiscountApplier();
-        discountApplier.addApplier(new NetPriceDiscountApplier());
-        price = new NetPriceDiscountApplier().applyDiscount(price, discountDTO);
-        price = new CustomerIDDiscountApplier().applyDiscount(price, discountDTO);
-        price = new ItemListDiscountApplier().applyDiscount(price, discountDTO);
-        
+        DiscountApplier discountApplier = new CompositeDiscountApplier();
+
         return price;
     }
 

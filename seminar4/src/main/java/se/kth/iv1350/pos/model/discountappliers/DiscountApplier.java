@@ -1,4 +1,4 @@
-package se.kth.iv1350.pos.model;
+package se.kth.iv1350.pos.model.discountappliers;
 
 import se.kth.iv1350.pos.integration.DiscountDTO;
 

@@ -1,9 +1,9 @@
-package se.kth.iv1350.pos.model;
+package se.kth.iv1350.pos.model.discountappliers;
 
-public class CompositePriceDiscountApplier implements DiscountApplier {
+class CompositeDiscountApplier implements DiscountApplier {
     private ArrayList<DiscountApplier> discountAppliers;
 
-    public CompositePriceDiscountApplier() {
+    CompositeDiscountApplier() {
         discountAppliers = new ArrayList<DiscountApplier>;
     }
 

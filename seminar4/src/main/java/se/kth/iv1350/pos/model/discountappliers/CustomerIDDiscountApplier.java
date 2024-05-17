@@ -1,14 +1,14 @@
-package se.kth.iv1350.pos.model;
+package se.kth.iv1350.pos.model.discountappliers;
 
 import se.kth.iv1350.pos.integration.DiscountDTO;
 
 /**
  * CustomerIDDiscountApplier
  */
-public class CustomerIDDiscountApplier implements DiscountApplier {
+class CustomerIDDiscountApplier implements DiscountApplier {
     private final int CHANGE_FACTOR_ONE = 1;
 
-    public CustomerIDDiscountApplier(){
+    CustomerIDDiscountApplier() {
     }
 
     @Override
