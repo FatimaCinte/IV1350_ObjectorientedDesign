@@ -5,9 +5,9 @@ import se.kth.iv1350.pos.integration.DiscountDTO;
 /**
  * ItemListDiscountApplier
  */
-temListDiscountApplier implements DiscountApplier {
+ItemListDiscountApplier implements DiscountApplier {
 
-    tDiscountApplier() {
+    ItemtDiscountApplier() {
     }
 
     @Override
