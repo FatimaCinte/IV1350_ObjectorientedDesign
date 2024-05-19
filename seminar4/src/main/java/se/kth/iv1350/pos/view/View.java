@@ -28,8 +28,8 @@ public class View {
     public View(Controller controller){
         this.controller = controller;
         controller.setFileLogger(fileLogger);
-        controller.addBasketObserver(new TotalRevenueView());
-        controller.addBasketObserver(new TotalRevenueFileOutput(fileLogger));
+        controller.addSaleObserver(new TotalRevenueView());
+        controller.addSaleObserver(new TotalRevenueFileOutput(fileLogger));
     }
 
     /** 

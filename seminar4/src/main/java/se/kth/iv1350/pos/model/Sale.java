@@ -9,6 +9,7 @@ import se.kth.iv1350.pos.integration.BasketDTO;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -20,14 +21,26 @@ public class Sale {
 
     private LocalTime time;
     private LocalDate date;
+    private List<SaleObserver> saleObservers;
 
     /**
      * Creates an instance of Sale.
      */
-    public Sale(List<BasketObserver> basketObservers) {
+    public Sale(List<SaleObserver> saleObservers) {
         date = LocalDate.now();
         time = LocalTime.now();
-        basket = new Basket(basketObservers);
+        basket = new Basket();
+        this.saleObservers = saleObservers;
+    }
+
+    private void notifyObservers() {
+        for (SaleObserver obs : saleObservers) {
+            obs.saleEnd(getPriceDetails());
+        }
+    }
+
+    public void addObserver(SaleObserver obs){
+        saleObservers.add(obs);
     }
 
     /**
@@ -57,11 +70,12 @@ public class Sale {
     /**
      * Returns the sale information.
      * 
-     * @return The sale informataion. 
+     * @return The sale information.
      */
     public SaleDTO getSaleDTO(){
-        SaleDTO saleInfromation = createSaleDTO();
-        return saleInfromation;
+        SaleDTO saleInformation = createSaleDTO();
+        notifyObservers();
+        return saleInformation;
     }
 
     /**

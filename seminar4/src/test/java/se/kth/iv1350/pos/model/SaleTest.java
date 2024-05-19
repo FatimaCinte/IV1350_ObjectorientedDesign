@@ -23,13 +23,13 @@ public class SaleTest {
     private BasketDTO basketDTO;
     private ItemDTO pasta;
     private ItemDTO bread;
-    private List<BasketObserver> basketObservers;
+    private List<SaleObserver> saleObservers;
 
     @BeforeEach
     public void setUp(){
-        basketObservers = new ArrayList<>();
-        instanceOfSale = new Sale(basketObservers);
-        instanceOfBasket = new Basket(basketObservers);
+        saleObservers = new ArrayList<>();
+        instanceOfSale = new Sale(saleObservers);
+        instanceOfBasket = new Basket();
         pasta = new ItemDTO(1, "Barilla Spaghetti", 20, 6);
         bread = new ItemDTO(2, "Varsågod", 13, 6);
     }

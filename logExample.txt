@@ -1,9 +1,3 @@
-Total revenue 29.90 SEK
-
-Total revenue 59.80 SEK
-
-Total revenue 74.70 SEK
-
 Unable to connect to the database.
 
 se.kth.iv1350.pos.integration.DatabaseConnectionException: Unable to connect to the database.
@@ -12,3 +6,5 @@ se.kth.iv1350.pos.integration.DatabaseConnectionException: Unable to connect to 
 	at se.kth.iv1350.pos.view.View.scanItem(View.java:64)
 	at se.kth.iv1350.pos.view.View.fakeExecutionRun(View.java:47)
 	at se.kth.iv1350.pos.startup.Main.main(Main.java:27)
+Total revenue 37,35 SEK
+

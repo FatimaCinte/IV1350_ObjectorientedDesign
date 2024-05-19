@@ -17,14 +17,12 @@ public class BasketTest {
     private ItemDTO pastaDTO;
     private ItemDTO breadDTO;
     private BasketDTO basketDTO;
-    private List<BasketObserver> basketObservers;
 
     @BeforeEach
     public void setUp() {
         pastaDTO = new ItemDTO(1, "Barilla Spaghetti", 20, 6);
         breadDTO = new ItemDTO(2, "Varsågod", 13, 6);
-        basketObservers = new ArrayList<>();
-        basket = new Basket(basketObservers);
+        basket = new Basket();
     }
 
     @AfterEach

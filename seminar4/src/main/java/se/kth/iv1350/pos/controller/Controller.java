@@ -6,7 +6,7 @@ import java.util.List;
 import se.kth.iv1350.pos.integration.*;
 import se.kth.iv1350.pos.model.Sale;
 import se.kth.iv1350.pos.util.FileLogger;
-import se.kth.iv1350.pos.model.BasketObserver;
+import se.kth.iv1350.pos.model.SaleObserver;
 import se.kth.iv1350.pos.model.Receipt;
 
 
@@ -16,7 +16,7 @@ import se.kth.iv1350.pos.model.Receipt;
 */
 public class Controller {
     private FileLogger fileLogger;
-    private List<BasketObserver> basketObservers = new ArrayList<>();
+    private List<SaleObserver> saleObservers = new ArrayList<>();
 
 	private AccountingHandler accountingHandler;
     private InventoryHandler inventoryHandler;
@@ -44,15 +44,15 @@ public class Controller {
         this.fileLogger = fileLogger;
     }
 
-    public void addBasketObserver(BasketObserver obs){
-        basketObservers.add(obs);
+    public void addSaleObserver(SaleObserver obs){
+        saleObservers.add(obs);
     }
 
     /**
      * Creates an instance of Sale. 
      */
     public void startSale() {
-        sale = new Sale(basketObservers);
+        sale = new Sale(saleObservers);
     }
 
     /**
@@ -106,7 +106,7 @@ public class Controller {
      * Prints receipt.
      * 
      * @param paidAmount The amount the customer is paying for the sale.
-     * @return The amount of chanage the customer should receive. 
+     * @return The amount of change the customer should receive.
      */
     public double presentPayment(double paidAmount) {
         SaleDTO saleInformation = sale.getSaleDTO();
