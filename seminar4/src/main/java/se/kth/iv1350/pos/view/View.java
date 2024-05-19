@@ -41,7 +41,7 @@ public class View {
         scanItem(123, 1); 
 
         scanItem(123, 1);
-        //scanItem(456, 1);
+        scanItem(456, 1);
 
         scanItem(99999, 1);
         scanItem(666, 1);

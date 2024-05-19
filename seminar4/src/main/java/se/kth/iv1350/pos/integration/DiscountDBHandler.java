@@ -6,6 +6,6 @@ public class DiscountDBHandler {
     }
 
     public DiscountDTO getDiscount(DiscountRequestDTO discountRequestDTO) {
-        return new DiscountDTO(0, 0, 0);
+        return new DiscountDTO(0, 0.5, 0);
     }
 }

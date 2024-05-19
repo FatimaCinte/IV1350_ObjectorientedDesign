@@ -2,6 +2,8 @@ Total revenue 29.90 SEK
 
 Total revenue 59.80 SEK
 
+Total revenue 74.70 SEK
+
 Unable to connect to the database.
 
 se.kth.iv1350.pos.integration.DatabaseConnectionException: Unable to connect to the database.
