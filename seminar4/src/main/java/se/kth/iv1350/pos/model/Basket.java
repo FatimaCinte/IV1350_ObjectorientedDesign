@@ -10,7 +10,6 @@ import se.kth.iv1350.pos.integration.PriceDetails;
 import se.kth.iv1350.pos.model.discountappliers.DiscountApplierFactory;
 
 class Basket {
-    private List<BasketObserver> basketObservers = new ArrayList<>();
 
     private ArrayList<Item> itemList;
     private Item latestItem;
@@ -21,21 +20,10 @@ class Basket {
     /**
      * Creates an instance of Basket
      */
-    Basket(List<BasketObserver> basketObservers) {
+    Basket() {
         itemList = new ArrayList<Item>();
         latestItem = null;
         priceDetails = new PriceDetails(0, 0);
-        this.basketObservers = basketObservers;
-    }
-
-    private void notifyObservers() {
-        for (BasketObserver obs : basketObservers) {
-            obs.newScan(priceDetails);
-        }
-    }
-
-    public void addObservers(BasketObserver obs){
-        basketObservers.add(obs);
     }
 
     /**
@@ -76,7 +64,6 @@ class Basket {
             addItemToBasket(item);
         }
         updateRunningPriceDetails(itemDTO, quantity);
-        notifyObservers();
 	}
 
     private void updateQuantityOfItemInList(int quantity, int itemID){

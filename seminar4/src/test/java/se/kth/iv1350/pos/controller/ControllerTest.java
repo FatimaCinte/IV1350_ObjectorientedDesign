@@ -15,7 +15,7 @@ import se.kth.iv1350.pos.integration.InventoryHandler;
 import se.kth.iv1350.pos.integration.ItemDTO;
 import se.kth.iv1350.pos.integration.ItemNotFoundException;
 import se.kth.iv1350.pos.integration.PrinterHandler;
-import se.kth.iv1350.pos.model.BasketObserver;
+import se.kth.iv1350.pos.model.SaleObserver;
 import se.kth.iv1350.pos.model.Item;
 import se.kth.iv1350.pos.integration.PriceDetails;
 
@@ -25,7 +25,7 @@ public class ControllerTest {
     private InventoryHandler inventoryHandler;
     private DiscountDBHandler discountDBHandler;
     private PrinterHandler printerHandler;
-    private List<BasketObserver> basketObservers;
+    private List<SaleObserver> saleObservers;
 
     private ItemDTO oatmeal;
 
@@ -36,7 +36,7 @@ public class ControllerTest {
         discountDBHandler = new DiscountDBHandler();
         printerHandler = new PrinterHandler();
         controller = new Controller(accountingHandler, inventoryHandler, discountDBHandler, printerHandler);
-        basketObservers = new ArrayList<>();
+        saleObservers = new ArrayList<>();
         controller.startSale();
         oatmeal = new ItemDTO(123, "BigWheel Oatmeal", 29.90, 6);
     }

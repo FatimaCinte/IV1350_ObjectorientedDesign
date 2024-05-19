@@ -5,7 +5,7 @@ import se.kth.iv1350.pos.integration.PriceDetails;
 /**
  * BasketObserver
  */
-public interface BasketObserver {
+public interface SaleObserver {
 
-    void newScan(PriceDetails priceDetails);
+    void saleEnd(PriceDetails priceDetails);
 }

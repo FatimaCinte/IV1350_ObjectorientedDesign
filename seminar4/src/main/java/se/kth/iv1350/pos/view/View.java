@@ -28,8 +28,8 @@ public class View {
     public View(Controller controller){
         this.controller = controller;
         controller.setFileLogger(fileLogger);
-        controller.addBasketObserver(new TotalRevenueView());
-        controller.addBasketObserver(new TotalRevenueFileOutput(fileLogger));
+        controller.addSaleObserver(new TotalRevenueView());
+        controller.addSaleObserver(new TotalRevenueFileOutput(fileLogger));
     }
 
     /** 
@@ -56,7 +56,29 @@ public class View {
         System.out.printf("Customer pays:     %5.2f%s\n", paidAmount ," SEK\n");
 
         double changeAmount = controller.presentPayment(100);   
-        System.out.printf("Change to give the customer:    %5.2f\n", changeAmount);     
+        System.out.printf("Change to give the customer:    %5.2f\n", changeAmount);
+
+        controller.startSale();
+
+        scanItem(123, 1);
+
+        scanItem(123, 1);
+        scanItem(456, 1);
+
+        scanItem(99999, 1);
+        scanItem(666, 1);
+
+        controller.endSale();
+        System.out.printf("End sale: \n");
+        System.out.printf("Total cost (incl. VAT):     %5.2f%s\n", runningNetPrice, " SEK\n");
+
+        controller.requestDiscount(123);
+
+        paidAmount = 100;
+        System.out.printf("Customer pays:     %5.2f%s\n", paidAmount ," SEK\n");
+
+        changeAmount = controller.presentPayment(100);
+        System.out.printf("Change to give the customer:    %5.2f\n", changeAmount);
     }
 
     private void scanItem(int itemID, int quantity) {
