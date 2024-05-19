@@ -85,11 +85,9 @@ public class View {
         try {
             currentBasket = controller.scanItem(itemID, quantity);
             presentItemInformation(currentBasket);
-        } catch (ItemNotFoundException exc) {
+        } catch (ItemNotFoundException | OperationFailedException exc) {
             System.out.println(exc.getMessage() + "\n");
-        } catch (OperationFailedException exc){
-            System.out.println(exc.getMessage() + "\n");
-        }   
+        }
     }
     
     private void presentItemInformation(BasketDTO basketDTO) {

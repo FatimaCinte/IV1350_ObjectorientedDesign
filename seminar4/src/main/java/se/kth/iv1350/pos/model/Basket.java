@@ -46,7 +46,8 @@ class Basket {
     }
 
     /**
-     * If item information belongs to a previously scanned item and already exists in basket, increase the quantity of that item with the given parameter.
+     * If item information belongs to a previously scanned item and already exists in basket,
+     * increase the quantity of that item with the given parameter.
      * Otherwise, add the item to the basket. 
      * Update price details.  
      * 

@@ -20,14 +20,14 @@ public class InventoryHandler {
      */
     public InventoryHandler(){
         inventory = new ArrayList<ItemDTO>();
-        addItemtoInventory(oatmeal);
-        addItemtoInventory(oatmeal);
-        addItemtoInventory(yoghurt);
-        addItemtoInventory(pasta);
-        addItemtoInventory(bread);
+        addItemToInventory(oatmeal);
+        addItemToInventory(oatmeal);
+        addItemToInventory(yoghurt);
+        addItemToInventory(pasta);
+        addItemToInventory(bread);
     }
 
-    private void addItemtoInventory(ItemDTO itemToAdd){
+    private void addItemToInventory(ItemDTO itemToAdd){
         inventory.add(itemToAdd);
     }
 
@@ -52,10 +52,10 @@ public class InventoryHandler {
 
     /**
      * Updates inventory with the items sold at sale.
-     * @param saleInforamtion contains the information about the sold items.
+     * @param saleInformation contains the information about the sold items.
      */
-    public void updateInventory(SaleDTO saleInforamtion){
-        ArrayList<Item> itemList = saleInforamtion.getItemList();
+    public void updateInventory(SaleDTO saleInformation){
+        ArrayList<Item> itemList = saleInformation.getItemList();
         for (Item itemInList : itemList) {
             System.out.println("Told external inventory system to decrease inventory quantity of item " 
             + itemInList.getItemDTO().getItemID() 
