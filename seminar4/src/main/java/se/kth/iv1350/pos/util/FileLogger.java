@@ -6,7 +6,7 @@ import java.io.PrintWriter;
 
 public class FileLogger {
     private PrintWriter logFile;
-    private static final String FILE_NAME = "log.txt";
+    private static final String FILE_NAME = "logExample.txt";
 
     public FileLogger() {
         try {

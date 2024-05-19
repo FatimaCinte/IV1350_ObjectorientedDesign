@@ -2,11 +2,5 @@ Total revenue 29.90 SEK
 
 Total revenue 59.80 SEK
 
-Unable to connect to the database.
+Total revenue 74.70 SEK
 
-se.kth.iv1350.pos.integration.DatabaseConnectionException: Unable to connect to the database.
-	at se.kth.iv1350.pos.integration.InventoryHandler.getItemDTO(InventoryHandler.java:43)
-	at se.kth.iv1350.pos.controller.Controller.scanItem(Controller.java:69)
-	at se.kth.iv1350.pos.view.View.scanItem(View.java:62)
-	at se.kth.iv1350.pos.view.View.fakeExecutionRun(View.java:45)
-	at se.kth.iv1350.pos.startup.Main.main(Main.java:27)
