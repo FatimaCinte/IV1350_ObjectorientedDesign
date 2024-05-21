@@ -81,7 +81,7 @@ public class View {
         System.out.printf("Change to give the customer:    %5.2f\n", changeAmount);
     }
 
-    private void scanItem(int itemID, int quantity) {
+    privet void scanItem(int itemID, int quantity) {
         try {
             currentBasket = controller.scanItem(itemID, quantity);
             presentItemInformation(currentBasket);
@@ -104,9 +104,7 @@ public class View {
         System.out.printf("Item name:     %s\n", name);
         System.out.printf("Item net price:     %5.2f%s\n", itemNetPrice, " SEK");
         System.out.printf("VAT:     %d%%\n\n", vatRate);
-        
         System.out.printf("Total cost (incl. VAT):     %5.2f%s\n",runningNetPrice," SEK");
         System.out.printf("Total VAT:     %5.2f%s\n\n",vatPrice, " SEK");
-        
     }
 }

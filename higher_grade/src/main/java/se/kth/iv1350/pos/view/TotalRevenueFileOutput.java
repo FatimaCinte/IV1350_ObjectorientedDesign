@@ -7,9 +7,8 @@ import se.kth.iv1350.pos.util.FileLogger;
 /**
  * TotalRevenueFileOutput
  */
-class TotalRevenueFileOutput implements SaleObserver {
+class TotalRevenueFileOutput extends TotalRevenue {
     private FileLogger fileLogger;
-    private double totalRevenue = 0;
 
     TotalRevenueFileOutput(FileLogger fileLogger){
         this.fileLogger = fileLogger;
@@ -17,8 +16,7 @@ class TotalRevenueFileOutput implements SaleObserver {
 
     //String.format("Total revenue %.5.2f%s", netPrice, " SEK")
     @Override
-    public void saleEnd(PriceDetails priceDetails) {
-        totalRevenue += priceDetails.getNetPrice();
+    public void doShowTotalRevenue() {
         fileLogger.logMessage(String.format("Total revenue %5.2f%s", totalRevenue, " SEK"));
     }
 }

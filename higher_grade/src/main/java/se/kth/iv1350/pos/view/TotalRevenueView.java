@@ -6,13 +6,10 @@ import se.kth.iv1350.pos.model.SaleObserver;
 /**
  * TotalRevenueView
  */
-class TotalRevenueView implements SaleObserver {
-
-    private double totalRevenue = 0;
+class TotalRevenueView extends TotalRevenue {
 
     @Override    
-    public void saleEnd(PriceDetails priceDetails) {
-        totalRevenue += priceDetails.getNetPrice();
+    public void doShowTotalRevenue() {
         System.out.printf("Total revenue: %5.2f%s\n\n", totalRevenue, " SEK.");
     }
 }
