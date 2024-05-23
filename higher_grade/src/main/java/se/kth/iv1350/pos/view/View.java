@@ -81,7 +81,7 @@ public class View {
         System.out.printf("Change to give the customer:    %5.2f\n", changeAmount);
     }
 
-    privet void scanItem(int itemID, int quantity) {
+    private void scanItem(int itemID, int quantity) {
         try {
             currentBasket = controller.scanItem(itemID, quantity);
             presentItemInformation(currentBasket);

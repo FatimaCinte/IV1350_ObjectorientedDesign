@@ -59,7 +59,6 @@ public class PrinterHandlerTest {
         double paidAmount = 100;
         priceDetails = controller.endSale();
         changeAmount = controller.presentPayment(paidAmount);
-
         
         date = LocalDate.now();
 
