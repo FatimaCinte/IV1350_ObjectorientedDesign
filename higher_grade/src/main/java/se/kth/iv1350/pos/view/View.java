@@ -7,7 +7,8 @@ import se.kth.iv1350.pos.integration.ItemNotFoundException;
 import se.kth.iv1350.pos.util.FileLogger;
 
 public class View {
-    private FileLogger fileLogger = new FileLogger();
+    private FileLogger revenueLogger = new FileLogger("revenueLog.txt");
+    private FileLogger errorLogger = new FileLogger("errorLog.txt");
 
     private Controller controller;
     private String name;
@@ -27,9 +28,9 @@ public class View {
      */
     public View(Controller controller){
         this.controller = controller;
-        controller.setFileLogger(fileLogger);
-        controller.addSaleObserver(new TotalRevenueView());
-        controller.addSaleObserver(new TotalRevenueFileOutput(fileLogger));
+        controller.setFileLogger(errorLogger);
+        controller.addSaleObserver(new TotalRevenueView(errorLogger));
+        controller.addSaleObserver(new TotalRevenueFileOutput(revenueLogger, errorLogger));
     }
 
     /** 
@@ -46,17 +47,12 @@ public class View {
         scanItem(99999, 1);
         scanItem(666, 1);
 
-        controller.endSale();
-        System.out.printf("End sale: \n");
-        System.out.printf("Total cost (incl. VAT):     %5.2f%s\n", runningNetPrice, " SEK\n");
+        endSale();
 
         controller.requestDiscount(123);
 
         paidAmount = 100;
-        System.out.printf("Customer pays:     %5.2f%s\n", paidAmount ," SEK\n");
-
-        double changeAmount = controller.presentPayment(100);   
-        System.out.printf("Change to give the customer:    %5.2f\n", changeAmount);
+        presentPayment(paidAmount);
 
         controller.startSale();
 
@@ -68,17 +64,12 @@ public class View {
         scanItem(99999, 1);
         scanItem(666, 1);
 
-        controller.endSale();
-        System.out.printf("End sale: \n");
-        System.out.printf("Total cost (incl. VAT):     %5.2f%s\n", runningNetPrice, " SEK\n");
+        endSale();
 
         controller.requestDiscount(123);
 
         paidAmount = 100;
-        System.out.printf("Customer pays:     %5.2f%s\n", paidAmount ," SEK\n");
-
-        changeAmount = controller.presentPayment(100);
-        System.out.printf("Change to give the customer:    %5.2f\n", changeAmount);
+        presentPayment(paidAmount);
     }
 
     public void fakeBasicExecutionRun(){
@@ -98,9 +89,23 @@ public class View {
         try {
             currentBasket = controller.scanItem(itemID, quantity);
             presentItemInformation(currentBasket);
-        } catch (ItemNotFoundException | OperationFailedException exc) {
-            System.out.println(exc.getMessage() + "\n");
+        } catch (ItemNotFoundException exc) {
+            System.out.println("Could not find the item with ID " + itemID + " in the inventory.\n");
+        } catch (OperationFailedException exc) {
+            System.out.println("Could not scan item.\n");
         }
+    }
+
+    private void endSale() {
+        controller.endSale();
+        System.out.print("End sale: \n");
+        System.out.printf("Total cost (incl. VAT):     %5.2f%s\n", runningNetPrice, " SEK\n");
+    }
+
+    private void presentPayment(double paidAmount) {
+        System.out.printf("Customer pays:     %5.2f%s\n", paidAmount ," SEK\n");
+        double changeAmount = controller.presentPayment(100);
+        System.out.printf("Change to give the customer:    %5.2f\n", changeAmount);
     }
     
     private void presentItemInformation(BasketDTO basketDTO) {
@@ -112,7 +117,7 @@ public class View {
         runningGrossPrice = basketDTO.getPriceDetails().getGrossPrice();
         vatPrice = runningNetPrice - runningGrossPrice;
         
-        System.out.printf("Latest scanned item: \n");
+        System.out.print("Latest scanned item: \n");
         System.out.printf("Item ID:     %d\n", itemID );
         System.out.printf("Item name:     %s\n", name);
         System.out.printf("Item net price:     %5.2f%s\n", itemNetPrice, " SEK");

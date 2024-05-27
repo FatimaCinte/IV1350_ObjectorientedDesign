@@ -6,11 +6,10 @@ import java.io.PrintWriter;
 
 public class FileLogger {
     private PrintWriter logFile;
-    private static final String FILE_NAME = "logExample.txt";
 
-    public FileLogger() {
+    public FileLogger(String file) {
         try {
-            logFile = new PrintWriter(new FileWriter(FILE_NAME), true);
+            logFile = new PrintWriter(new FileWriter(file), true);
         } catch (IOException ioe) {
             System.out.println("Could not log.");
             ioe.printStackTrace();

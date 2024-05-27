@@ -6,16 +6,23 @@ import se.kth.iv1350.pos.util.FileLogger;
  * TotalRevenueFileOutput
  */
 class TotalRevenueFileOutput extends TotalRevenue {
-    private FileLogger fileLogger;
+    private FileLogger revenueLogger;
+    private FileLogger errorLogger;
 
-    TotalRevenueFileOutput(FileLogger fileLogger){
-        this.fileLogger = fileLogger;
+    TotalRevenueFileOutput(FileLogger revenueLogger, FileLogger errorLogger){
+        this.revenueLogger = revenueLogger;
+        this.errorLogger = errorLogger;
     }
 
-    //String.format("Total revenue %.5.2f%s", netPrice, " SEK")
     @Override
     public void doShowTotalRevenue() {
-        fileLogger.logMessage(String.format("Total revenue %5.2f%s", totalRevenue, " SEK"));
+        revenueLogger.logMessage(String.format("Total revenue %5.2f%s", totalRevenue, " SEK"));
+    }
+
+    @Override
+    public void handleErrors(Exception exc) {
+        System.out.println("Something went wrong when trying to write the revenue to file.");
+        errorLogger.logException(exc);
     }
 
     @Override

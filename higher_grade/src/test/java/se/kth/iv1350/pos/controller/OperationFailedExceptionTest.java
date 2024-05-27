@@ -26,7 +26,7 @@ public class OperationFailedExceptionTest {
         inventoryHandler = new InventoryHandler();
         discountDBHandler = new DiscountDBHandler();
         printerHandler = new PrinterHandler();
-        fileLogger = new FileLogger();
+        fileLogger = new FileLogger("test.txt");
         controller = new Controller(accountingHandler, inventoryHandler, discountDBHandler, printerHandler);
         controller.startSale();
         controller.setFileLogger(fileLogger);
