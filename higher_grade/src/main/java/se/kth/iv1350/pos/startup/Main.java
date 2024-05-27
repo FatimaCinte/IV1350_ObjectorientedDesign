@@ -24,7 +24,9 @@ public class Main {
         View view = new View(controller);
         
         
-        view.fakeExecutionRun();
+        //view.fakeExecutionRun();
+        view.fakeBasicExecutionRun();
+
 
     }
 }

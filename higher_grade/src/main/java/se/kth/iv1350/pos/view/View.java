@@ -81,6 +81,19 @@ public class View {
         System.out.printf("Change to give the customer:    %5.2f\n", changeAmount);
     }
 
+    public void fakeBasicExecutionRun(){
+        controller.startSale();
+
+        scanItem(123, 1); 
+
+        controller.endSale();
+        System.out.printf("End sale: \n");
+        System.out.printf("Total cost (incl. VAT):     %5.2f%s\n", runningNetPrice, " SEK\n");
+
+        paidAmount = 100;
+        System.out.printf("Customer pays:     %5.2f%s\n", paidAmount ," SEK\n");
+    }
+
     private void scanItem(int itemID, int quantity) {
         try {
             currentBasket = controller.scanItem(itemID, quantity);
@@ -107,4 +120,5 @@ public class View {
         System.out.printf("Total cost (incl. VAT):     %5.2f%s\n",runningNetPrice," SEK");
         System.out.printf("Total VAT:     %5.2f%s\n\n",vatPrice, " SEK");
     }
+
 }

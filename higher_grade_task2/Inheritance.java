@@ -8,8 +8,6 @@ public class Inheritance extends Random {
     private static final long addend = 0xBL;
     private static final long mask = 0xFFFFFFFFFFFFFFFFL;
 
-    private static boolean test = false;
-
     public Inheritance(){ 
     }
 
@@ -26,10 +24,10 @@ public class Inheritance extends Random {
         nextseed = (oldseed * multiplier + addend) & mask;
         seed = nextseed;
         System.out.println("nextSeed: " + nextseed + "  , oldseed    " + oldseed);
-        System.out.println("nextSeed shifted: " + (int)(nextseed >>> 48));
-        System.out.println("nextSeed shifted: " + (int)(nextseed >>> 16));
+        System.out.println("Seed shifted 16: " + (seed >>> 16));
+        System.out.println("Seed shifted 32: " + (seed >>> 32));
 
-        return (int)(nextseed >>> 16);
+        return (int)(nextseed >>> 32);
 
     }
 

@@ -31,5 +31,5 @@ public abstract class TotalRevenue implements SaleObserver {
 
     protected abstract void doShowTotalRevenue() throws Exception ;
 
-    //protected abstract void handleErrors(Exception e);
+    protected abstract void handleErrors(Exception e);
 }

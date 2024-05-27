@@ -1,7 +1,5 @@
 package se.kth.iv1350.pos.view;
 
-import se.kth.iv1350.pos.integration.PriceDetails;
-import se.kth.iv1350.pos.model.SaleObserver;
 import se.kth.iv1350.pos.util.FileLogger;
 
 /**
@@ -18,5 +16,11 @@ class TotalRevenueFileOutput extends TotalRevenue {
     @Override
     public void doShowTotalRevenue() {
         fileLogger.logMessage(String.format("Total revenue %5.2f%s", totalRevenue, " SEK"));
+    }
+
+    @Override
+    public void handleErrors(Exception e) {
+        System.err.println("Something went wrong when trying to write the revenue to file: " + e.getMessage());
+        e.printStackTrace(System.err);
     }
 }
