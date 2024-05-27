@@ -77,12 +77,10 @@ public class View {
 
         scanItem(123, 1); 
 
-        controller.endSale();
-        System.out.printf("End sale: \n");
-        System.out.printf("Total cost (incl. VAT):     %5.2f%s\n", runningNetPrice, " SEK\n");
+        endSale();
 
         paidAmount = 100;
-        System.out.printf("Customer pays:     %5.2f%s\n", paidAmount ," SEK\n");
+        presentPayment(paidAmount);
     }
 
     private void scanItem(int itemID, int quantity) {

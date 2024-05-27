@@ -24,10 +24,4 @@ class TotalRevenueFileOutput extends TotalRevenue {
         System.out.println("Something went wrong when trying to write the revenue to file.");
         errorLogger.logException(exc);
     }
-
-    @Override
-    public void handleErrors(Exception e) {
-        System.err.println("Something went wrong when trying to write the revenue to file: " + e.getMessage());
-        e.printStackTrace(System.err);
-    }
 }

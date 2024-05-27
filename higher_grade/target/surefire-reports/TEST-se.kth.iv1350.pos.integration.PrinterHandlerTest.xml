@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="se.kth.iv1350.pos.integration.PrinterHandlerTest" time="0.008" tests="1" errors="0" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="se.kth.iv1350.pos.integration.PrinterHandlerTest" time="0.007" tests="1" errors="0" skipped="0" failures="0">
   <properties>
     <property name="java.specification.version" value="17"/>
     <property name="sun.cpu.isalist" value="amd64"/>
@@ -15,7 +15,7 @@
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
     <property name="user.country" value="US"/>
     <property name="sun.boot.library.path" value="C:\Users\fatim_fw7jodi\AppData\Local\Programs\Eclipse Adoptium\jdk-17.0.4.101-hotspot\bin"/>
-    <property name="sun.java.command" value="C:\Users\fatim_fw7jodi\AppData\Local\Temp\surefire4995316588586749054\surefirebooter-20240527113127062_3.jar C:\Users\fatim_fw7jodi\AppData\Local\Temp\surefire4995316588586749054 2024-05-27T11-31-26_715-jvmRun1 surefire-20240527113127062_1tmp surefire_0-20240527113127062_2tmp"/>
+    <property name="sun.java.command" value="C:\Users\fatim_fw7jodi\AppData\Local\Temp\surefire4988858650826044557\surefirebooter-20240527141530629_3.jar C:\Users\fatim_fw7jodi\AppData\Local\Temp\surefire4988858650826044557 2024-05-27T14-15-30_256-jvmRun1 surefire-20240527141530629_1tmp surefire_0-20240527141530629_2tmp"/>
     <property name="jdk.debug" value="release"/>
     <property name="surefire.test.class.path" value="c:\Users\fatim_fw7jodi\OneDrive\Documents\GitHub\IV1350_ObjectorientedDesign\higher_grade\target\test-classes;c:\Users\fatim_fw7jodi\OneDrive\Documents\GitHub\IV1350_ObjectorientedDesign\higher_grade\target\classes;C:\Users\fatim_fw7jodi\.m2\repository\org\junit\jupiter\junit-jupiter-api\5.3.1\junit-jupiter-api-5.3.1.jar;C:\Users\fatim_fw7jodi\.m2\repository\org\apiguardian\apiguardian-api\1.0.0\apiguardian-api-1.0.0.jar;C:\Users\fatim_fw7jodi\.m2\repository\org\opentest4j\opentest4j\1.1.1\opentest4j-1.1.1.jar;C:\Users\fatim_fw7jodi\.m2\repository\org\junit\platform\junit-platform-commons\1.3.1\junit-platform-commons-1.3.1.jar;C:\Users\fatim_fw7jodi\.m2\repository\org\junit\jupiter\junit-jupiter-params\5.3.1\junit-jupiter-params-5.3.1.jar;C:\Users\fatim_fw7jodi\.m2\repository\org\junit\jupiter\junit-jupiter-engine\5.3.1\junit-jupiter-engine-5.3.1.jar;C:\Users\fatim_fw7jodi\.m2\repository\org\junit\platform\junit-platform-engine\1.3.1\junit-platform-engine-1.3.1.jar;"/>
     <property name="sun.cpu.endian" value="little"/>
@@ -30,7 +30,7 @@
     <property name="line.separator" value="&#10;"/>
     <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
     <property name="java.specification.name" value="Java Platform API Specification"/>
-    <property name="surefire.real.class.path" value="C:\Users\fatim_fw7jodi\AppData\Local\Temp\surefire4995316588586749054\surefirebooter-20240527113127062_3.jar"/>
+    <property name="surefire.real.class.path" value="C:\Users\fatim_fw7jodi\AppData\Local\Temp\surefire4988858650826044557\surefirebooter-20240527141530629_3.jar"/>
     <property name="user.script" value=""/>
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
     <property name="java.runtime.version" value="17.0.4.1+1"/>
@@ -57,5 +57,5 @@
     <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
     <property name="java.class.version" value="61.0"/>
   </properties>
-  <testcase name="testCreateReceiptString" classname="se.kth.iv1350.pos.integration.PrinterHandlerTest" time="0.006"/>
+  <testcase name="testCreateReceiptString" classname="se.kth.iv1350.pos.integration.PrinterHandlerTest" time="0.005"/>
 </testsuite>
