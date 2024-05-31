@@ -9,9 +9,7 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
 
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 
 import se.kth.iv1350.pos.model.Receipt;
 import se.kth.iv1350.pos.model.SaleObserver;
@@ -22,6 +20,7 @@ import se.kth.iv1350.pos.controller.OperationFailedException;
  * PrinterHandlerTest
  */
 public class PrinterHandlerTest {
+    private static PrintStream systemOut;
     private Controller controller;
     private ByteArrayOutputStream outContent;
     private AccountingHandler accountingHandler;
@@ -31,7 +30,17 @@ public class PrinterHandlerTest {
     private PriceDetails priceDetails;
     private double changeAmount;
     private LocalDate date;
-    
+
+    @BeforeAll
+    public static void beforeAll() {
+        systemOut = System.out;
+    }
+
+    @AfterAll
+    public static void cleanUp() {
+        System.setOut(systemOut);
+    }
+
     @BeforeEach
     public void setUp() {
         outContent = new ByteArrayOutputStream();
