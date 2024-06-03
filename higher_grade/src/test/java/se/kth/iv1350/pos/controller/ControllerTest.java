@@ -42,7 +42,7 @@ public class ControllerTest {
         controller = null;
     }
 
-
+    
     @Test
     public void testScanItem() throws ItemNotFoundException, OperationFailedException{
         BasketDTO basketDTO = controller.scanItem(123, 1);

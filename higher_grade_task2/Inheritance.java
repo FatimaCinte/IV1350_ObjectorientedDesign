@@ -23,9 +23,6 @@ public class Inheritance extends Random {
         oldseed = seed;
         nextseed = (oldseed * multiplier + addend) & mask;
         seed = nextseed;
-        System.out.println("nextSeed: " + nextseed + "  , oldseed    " + oldseed);
-        System.out.println("Seed shifted 16: " + (seed >>> 16));
-        System.out.println("Seed shifted 32: " + (seed >>> 32));
 
         return (int)(nextseed >>> 32);
 
